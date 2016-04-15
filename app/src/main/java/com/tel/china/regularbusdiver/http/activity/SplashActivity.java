@@ -1,4 +1,4 @@
-package com.tel.china.regularbusdiver;
+package com.tel.china.regularbusdiver.http.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        int a,b;
         setContentView(R.layout.activity_splash);
     }
 
