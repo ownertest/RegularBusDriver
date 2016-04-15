@@ -12,14 +12,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.creditease.shangtongdai.BuildConfig;
-import com.creditease.shangtongdai.Config;
-import com.creditease.shangtongdai.StdApplication;
-import com.creditease.shangtongdai.activity.BaseActivity;
-import com.creditease.shangtongdai.bean.User;
-import com.creditease.shangtongdai.util.ChannelUtil;
-import com.creditease.shangtongdai.util.ImageCache;
-import com.creditease.shangtongdai.util.Log;
+import com.creditease.zhiwang.BuildConfig;
+import com.creditease.zhiwang.Config;
+import com.creditease.zhiwang.QxfApplication;
+import com.creditease.zhiwang.activity.BaseActivity;
+import com.creditease.zhiwang.bean.User;
+import com.creditease.zhiwang.util.ChannelUtil;
+import com.creditease.zhiwang.util.ImageCache;
+import com.creditease.zhiwang.util.Log;
 
 import org.json.JSONObject;
 
@@ -40,13 +40,13 @@ public class RequestManager {
     private static final int DEFAULT_MAX_RETRIES = 1;
     private static final float DEFAULT_BACKOFF_MULT = 1.0f;
 
-    public static int DEFAULT_TIMEOUT = (int) (DateUtils.SECOND_IN_MILLIS * 30);
+    public static String FILTER_NEED_NOT_CANCEL = "need_not_cancel";
 
     private RequestManager() {
     }
 
     public static void init(Context context) {
-        requestQueue = Volley.newRequestQueue(context, new MockHttpStack(1000));
+        requestQueue = Volley.newRequestQueue(context, new QxfHurlStack());
         imageCache = new ImageCache(context);
         imageLoader = new ImageLoader(requestQueue, imageCache);
         //初始化请求头
@@ -55,12 +55,12 @@ public class RequestManager {
 
     private static void initExtraHeader() {
         extraHeader = new HashMap<>();
-        extraHeader.put("User-Agent", StdApplication.userAgent);
+        extraHeader.put("User-Agent", QxfApplication.userAgent);
         extraHeader.put("Connection", "Keep-Alive");
         extraHeader.put("Charset", "UTF-8");
         extraHeader.put("platform", "android");
         extraHeader.put("platform_version", Build.VERSION.RELEASE);
-        extraHeader.put("device_guid", StdApplication.deviceGuid);
+        extraHeader.put("device_guid", QxfApplication.deviceGuid);
         extraHeader.put("version_code", String.valueOf(BuildConfig.VERSION_CODE));
         extraHeader.put("version_name", BuildConfig.VERSION_NAME);
     }
@@ -83,10 +83,61 @@ public class RequestManager {
         return extraHeader;
     }
 
-    public static void backgroundRequest(StdRequest request) {
-        request.setRetryPolicy(new StdRetryPolicy(DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES, DEFAULT_BACKOFF_MULT));
+    /**
+     * 当发起此请求的activity执行onDestroy时，此request会被cancel
+     */
+    public static void backgroundRequest(int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener) {
+        backgroundRequest(method, url, params, listener, (int) (DateUtils.SECOND_IN_MILLIS * 30));
+    }
+
+    /**
+     * @param filter request cancel 的filter
+     */
+    public static void backgroundRequest(@Nullable String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener) {
+        backgroundRequest(filter, method, url, params, listener, (int) (DateUtils.SECOND_IN_MILLIS * 30));
+    }
+
+    /**
+     * 当发起此请求的activity执行onDestroy时，此request会被cancel
+     */
+    public static void backgroundRequest(int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener, int timeoutMS) {
+        backgroundRequest(BaseActivity.mCurrentActivity == null ? null : BaseActivity.mCurrentActivity.getClass().getName()
+                , method, url, params, listener, timeoutMS);
+    }
+
+    /**
+     * @param filter request cancel 的filter
+     */
+    public static void backgroundRequest(@Nullable String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener, int timeoutMS) {
+        QxfRequest request = new QxfRequest(method, url, listener);
+        if (!TextUtils.isEmpty(filter))
+            request.setTag(filter);
+        request.setRetryPolicy(new QxfRetryPolicy(timeoutMS, DEFAULT_MAX_RETRIES, DEFAULT_BACKOFF_MULT));
+        request.setParams(params);
+
         RequestQueue queue = RequestManager.getRequestQueue();
+        Log.d("cache key: " + request.getCacheKey());
+        Log.d("request_info", request.getUrl());
         queue.add(request);
+    }
+
+    public static void clearCache(String url, Map<String, String> params) {
+        QxfRequest request = new QxfRequest(Request.Method.GET, url, new QxfResponseListener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        request.setParams(params);
+        String key = request.getCacheKey();
+        Cache cache = RequestManager.getRequestQueue().getCache();
+        cache.remove(key);
+        Log.d("clear cache: " + key);
     }
 
     /**
@@ -96,19 +147,19 @@ public class RequestManager {
      */
     public static Map<String, String> getCommonParams() {
         Map<String, String> params = new TreeMap<>();
-        User user = StdApplication.getCurrentUser();
+        User user = QxfApplication.getCurrentUser();
         //如果本地没有用户信息记录，说明用户未登录。采用默认信息
         if (user != null) {
             params.put(Config.key_user_id, String.valueOf(user.user_id));
-            params.put(Config.key_session_id, StdApplication.getSessionId());
+            params.put(Config.key_session_id, QxfApplication.getSessionId());
         } else {
             params.put(Config.key_user_id, "0");
         }
 
         //common 参数
         params.put(Config.key_device_model, Build.MODEL);
-        params.put(Config.key_device_guid, StdApplication.deviceGuid);
-        params.put(Config.key_channel, ChannelUtil.getChannel(StdApplication.instance.getApplicationContext(), "creditease"));
+        params.put(Config.key_device_guid, QxfApplication.deviceGuid);
+        params.put(Config.key_channel, ChannelUtil.getChannel(QxfApplication.instance.getApplicationContext(), "creditease"));
 
         return params;
     }

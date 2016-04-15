@@ -11,13 +11,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.creditease.shangtongdai.Config;
-import com.creditease.shangtongdai.StdApplication;
-import com.creditease.shangtongdai.URLConfig;
-import com.creditease.shangtongdai.util.Log;
-import com.creditease.shangtongdai.util.Md5Util;
-import com.creditease.shangtongdai.util.TrackingUtil;
 import com.creditease.tracking.TrackingAgent;
+import com.creditease.zhiwang.Config;
+import com.creditease.zhiwang.QxfApplication;
+import com.creditease.zhiwang.URLConfig;
+import com.creditease.zhiwang.util.Log;
+import com.creditease.zhiwang.util.Md5Util;
+import com.creditease.zhiwang.util.TrackingUtil;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
@@ -84,9 +84,9 @@ public class QxfRequest extends Request<JSONObject> {
     }
 
     private static void trackNetworkError(Exception e, String url) {
-        TCAgent.onEvent(StdApplication.instance.getApplicationContext(), url, e.getMessage());
+        TCAgent.onEvent(QxfApplication.instance.getApplicationContext(), url, e.getMessage());
         //google analytics
-        Tracker tracker = StdApplication.instance.getGaTracker();
+        Tracker tracker = QxfApplication.instance.getGaTracker();
         tracker.send(new HitBuilders.EventBuilder()
                 .setCategory(TrackingUtil.GACategoryError)
                 .setAction(url)
@@ -159,11 +159,11 @@ public class QxfRequest extends Request<JSONObject> {
                 return;
             }
             if (testID.equals("-1")) {
-                StdApplication.updateABTestInfo("", "");
+                QxfApplication.updateABTestInfo("", "");
 
                 return;
             }
-            StdApplication.updateABTestInfo(testID, response.optString(Config.key_test_group));
+            QxfApplication.updateABTestInfo(testID, response.optString(Config.key_test_group));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -208,12 +208,12 @@ public class QxfRequest extends Request<JSONObject> {
                     map.put("error_type", cause.getClass().getSimpleName());
                 }
             }
-            TrackingAgent.onEvent(StdApplication.instance.getApplicationContext(), EVENT_API_REQUEST, "", map);
+            TrackingAgent.onEvent(QxfApplication.instance.getApplicationContext(), EVENT_API_REQUEST, "", map);
             String label = calcRequestTimeLabel(duration);
             //talking data
-            TCAgent.onEvent(StdApplication.instance.getApplicationContext(), api, label);
+            TCAgent.onEvent(QxfApplication.instance.getApplicationContext(), api, label);
             //google analytics
-            Tracker tracker = StdApplication.instance.getGaTracker();
+            Tracker tracker = QxfApplication.instance.getGaTracker();
             tracker.send(new HitBuilders.TimingBuilder()
                     .setCategory("API")
                     .setVariable(path)

@@ -2,7 +2,7 @@ package com.tel.china.regularbusdiver.http;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.VolleyError;
-import com.creditease.shangtongdai.util.Log;
+import com.creditease.zhiwang.util.Log;
 
 /**
  * Created by wuyq on 2014-08-29 下午9:09.
