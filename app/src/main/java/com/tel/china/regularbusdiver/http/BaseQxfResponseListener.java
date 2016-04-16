@@ -11,9 +11,7 @@ import com.tel.china.regularbusdiver.util.Log;
 
 import org.json.JSONObject;
 
-/**
- * Created by long on 2015-1-11.
- */
+
 public class BaseQxfResponseListener implements QxfResponseListener<JSONObject> {
     protected BaseActivity activity;
     protected Dialog dialog;

@@ -7,9 +7,7 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-/**
- * Created by yixin on 15/7/29.
- */
+
 public class MessageHttper {
 
     /**

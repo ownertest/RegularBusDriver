@@ -3,12 +3,15 @@ package com.tel.china.regularbusdiver.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.tel.china.regularbusdiver.http.RequestManager;
 
 public abstract class BaseActivity extends Activity {
     protected final String TAG = this.getClass().getSimpleName();
     public static BaseActivity mCurrentActivity;
+    protected Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +58,15 @@ public abstract class BaseActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+    public void showToast(String text, int duration) {
+        if (toast == null) {
+            toast = Toast.makeText(this, text, duration);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+        } else {
+            toast.setText(text);
+        }
+        toast.show();
+    }
 
 
 }
