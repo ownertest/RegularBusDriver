@@ -36,7 +36,6 @@ public class StdApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SDKInitializer.initialize(this);
         host = getResources().getString(R.string.app_host);
         int pid = android.os.Process.myPid();
         String name = getApplicationContext().getPackageName();
