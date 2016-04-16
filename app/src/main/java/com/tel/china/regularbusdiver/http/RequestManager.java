@@ -20,6 +20,7 @@ import com.creditease.zhiwang.bean.User;
 import com.creditease.zhiwang.util.ChannelUtil;
 import com.creditease.zhiwang.util.ImageCache;
 import com.creditease.zhiwang.util.Log;
+import com.tel.china.regularbusdiver.system.StdApplication;
 
 import org.json.JSONObject;
 
@@ -36,7 +37,6 @@ public class RequestManager {
     private static ImageLoader imageLoader;
 
     private static Map<String, String> extraHeader;
-    private static ImageCache imageCache;
     private static final int DEFAULT_MAX_RETRIES = 1;
     private static final float DEFAULT_BACKOFF_MULT = 1.0f;
 
@@ -47,20 +47,18 @@ public class RequestManager {
 
     public static void init(Context context) {
         requestQueue = Volley.newRequestQueue(context, new QxfHurlStack());
-        imageCache = new ImageCache(context);
-        imageLoader = new ImageLoader(requestQueue, imageCache);
         //初始化请求头
         initExtraHeader();
     }
 
     private static void initExtraHeader() {
         extraHeader = new HashMap<>();
-        extraHeader.put("User-Agent", QxfApplication.userAgent);
+        extraHeader.put("User-Agent", StdApplication.userAgent);
         extraHeader.put("Connection", "Keep-Alive");
         extraHeader.put("Charset", "UTF-8");
         extraHeader.put("platform", "android");
         extraHeader.put("platform_version", Build.VERSION.RELEASE);
-        extraHeader.put("device_guid", QxfApplication.deviceGuid);
+        extraHeader.put("device_guid", StdApplication.deviceGuid);
         extraHeader.put("version_code", String.valueOf(BuildConfig.VERSION_CODE));
         extraHeader.put("version_name", BuildConfig.VERSION_NAME);
     }
@@ -93,7 +91,7 @@ public class RequestManager {
     /**
      * @param filter request cancel 的filter
      */
-    public static void backgroundRequest(@Nullable String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener) {
+    public static void backgroundRequest(String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener) {
         backgroundRequest(filter, method, url, params, listener, (int) (DateUtils.SECOND_IN_MILLIS * 30));
     }
 
@@ -108,7 +106,7 @@ public class RequestManager {
     /**
      * @param filter request cancel 的filter
      */
-    public static void backgroundRequest(@Nullable String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener, int timeoutMS) {
+    public static void backgroundRequest( String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener, int timeoutMS) {
         QxfRequest request = new QxfRequest(method, url, listener);
         if (!TextUtils.isEmpty(filter))
             request.setTag(filter);
@@ -147,24 +145,11 @@ public class RequestManager {
      */
     public static Map<String, String> getCommonParams() {
         Map<String, String> params = new TreeMap<>();
-        User user = QxfApplication.getCurrentUser();
-        //如果本地没有用户信息记录，说明用户未登录。采用默认信息
-        if (user != null) {
-            params.put(Config.key_user_id, String.valueOf(user.user_id));
-            params.put(Config.key_session_id, QxfApplication.getSessionId());
-        } else {
-            params.put(Config.key_user_id, "0");
-        }
-
-        //common 参数
-        params.put(Config.key_device_model, Build.MODEL);
-        params.put(Config.key_device_guid, QxfApplication.deviceGuid);
-        params.put(Config.key_channel, ChannelUtil.getChannel(QxfApplication.instance.getApplicationContext(), "creditease"));
+//        params.put(Config.key_user_id, String.valueOf(user.user_id));
+//        params.put(Config.key_session_id, QxfApplication.getSessionId());
+//        params.put(Config.key_user_id, "0");
 
         return params;
     }
 
-    public static ImageCache getImageCache() {
-        return imageCache;
-    }
 }
