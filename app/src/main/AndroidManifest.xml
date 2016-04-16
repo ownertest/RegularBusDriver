@@ -29,6 +29,16 @@
     <!-- 获得当前正在运行的activity -->
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <!-- 根据talkingdata数据知道，部分机型的2.3版本监听wifi广播时需要这个权限 -->
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 
@@ -44,9 +54,16 @@
         android:name=".system.StdApplication"
         android:allowBackup="true"
         android:icon="@drawable/logo"
+        android:theme="@style/AppTheme"
         android:label="@string/app_name">
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="mxrXkWuntNk0xMdW0zdKIZgSqUGPZohg" />
+
         <activity
             android:name=".ui.activity.TestActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,14 +72,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:label="@string/app_name"></activity>
+            android:name=".ui.activity.LoginActivity"
+            android:label="@string/LoginActivity">
+        </activity>
         <activity
             android:name=".ui.activity.SplashActivity"
-            android:label="@string/SplashActivity"></activity>
+            android:label="@string/SplashActivity">
+        </activity>
         <activity
-            android:name=".ui.activity.LoginActivity"
-            android:label="@string/LoginActivity"></activity>
+            android:name=".ui.activity.MainActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

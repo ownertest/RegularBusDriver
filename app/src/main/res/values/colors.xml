@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="tab_text_color">#6f7378</color>
+    <color name="common_title_bg_color">#2ba7dd</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
@@ -72,6 +73,7 @@
 
     //鑹插�琛�    <color name="w_navigation_title">#3d4245</color>
     <color name="i_green">#0f9a8c</color>
+>>>>>>> origin/master
 
     <color name="dialog_divider">#ebebe9</color>
     //chart view

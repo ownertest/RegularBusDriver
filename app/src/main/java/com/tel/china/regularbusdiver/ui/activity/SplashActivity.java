@@ -52,7 +52,7 @@ public class SplashActivity extends Activity {
         mTime = System.currentTimeMillis();
         initView();
         initListener();
-//        myHandler.sendMessageDelayed(new Message(), 2000);
+        myHandler.sendEmptyMessageDelayed(SPLASH, 2000);
     }
 
     private void initView() {

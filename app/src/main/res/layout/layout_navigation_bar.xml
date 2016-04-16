@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="54dp"
-    android:background="@android:color/darker_gray">
+              android:background="@android:color/white">
 
     <RelativeLayout
         android:id="@+id/navigation_btn_home"
@@ -13,13 +13,14 @@
 
         <ImageView
             android:id="@+id/navigation_home_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/navigation_logo_size"
+            android:layout_height="@dimen/navigation_logo_size"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="7dp"
-            android:background="@android:color/darker_gray"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:background="@drawable/search"
+            android:src="@drawable/search"/>
 
         <TextView
             android:id="@+id/navigation_home_txt"
@@ -27,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/navigation_home_img"
-            android:text="查询"/>
+            android:text="@string/main_search"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -39,13 +40,14 @@
 
         <ImageView
             android:id="@+id/navigation_cars_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/navigation_logo_size"
+            android:layout_height="@dimen/navigation_logo_size"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="7dp"
-            android:background="@android:color/darker_gray"
-            android:scaleType="fitCenter"/>
+            android:background="@drawable/car"
+            android:scaleType="fitCenter"
+            android:src="@drawable/car"/>
 
         <TextView
             android:id="@+id/navigation_cars_txt"
@@ -53,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/navigation_cars_img"
-            android:text="预定"/>
+            android:text="@string/main_order"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -65,13 +67,14 @@
 
         <ImageView
             android:id="@+id/navigation_discount_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/navigation_logo_size"
+            android:layout_height="@dimen/navigation_logo_size"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="7dp"
-            android:background="@android:color/darker_gray"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:background="@drawable/map"
+            android:src="@drawable/map"/>
 
         <TextView
             android:id="@+id/navigation_discount_txt"
@@ -79,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/navigation_discount_img"
-            android:text="位置"/>
+            android:text="@string/main_location"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -91,13 +94,14 @@
 
         <ImageView
             android:id="@+id/navigation_mine_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/navigation_logo_size"
+            android:layout_height="@dimen/navigation_logo_size"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="7dp"
-            android:background="@android:color/darker_gray"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter"
+            android:background="@drawable/settings"
+            android:src="@drawable/settings"/>
 
         <TextView
             android:id="@+id/navigation_mine_txt"
@@ -105,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/navigation_mine_img"
-            android:text="个人"/>
+            android:text="@string/main_setting"/>
     </RelativeLayout>
 
 </LinearLayout>
