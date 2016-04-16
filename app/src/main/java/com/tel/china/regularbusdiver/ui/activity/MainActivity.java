@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.tel.china.regularbusdiver.R;
@@ -29,6 +30,9 @@ public class MainActivity extends FragmentActivity implements QxfResponseListene
     private PageAdapter adapter;
     private NavigationBar mNavigationBar;
     private NoScrollViewPager mViewPager;
+    private Toast mKeyCodeBackToast;
+    private int mMilliSeconds = 2 * 1000;
+    private long mKeyCodeBackLastDownTime = Integer.MIN_VALUE;
 
     private int lastPos;// 上次用户选中的页卡
 //    private OnPagerScrollListener onScrollListener; //TODO
@@ -94,7 +98,20 @@ public class MainActivity extends FragmentActivity implements QxfResponseListene
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-            return true; //TODO
+            if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
+                if (null == mKeyCodeBackToast) {
+                    mKeyCodeBackToast = Toast.makeText(this, getString(R.string.keycode_back_alert_message),
+                            Toast.LENGTH_SHORT);
+                    mKeyCodeBackToast.show();
+                } else if (mMilliSeconds < System.currentTimeMillis() - mKeyCodeBackLastDownTime) {
+                    mKeyCodeBackToast.show();
+                } else {
+                    mKeyCodeBackToast.cancel();
+                    mKeyCodeBackToast = null;
+                    System.exit(0);
+                }
+                mKeyCodeBackLastDownTime = System.currentTimeMillis();
+            }
         }
         return super.dispatchKeyEvent(event);
     }

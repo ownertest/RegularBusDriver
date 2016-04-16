@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import com.tel.china.regularbusdiver.ui.activity.MainActivity;
 
 public abstract class BaseMainFragment extends Fragment {
-    private MainActivity mActivity;
+    protected MainActivity mActivity;
 
     @Override
     public void onAttach(Activity activity) {

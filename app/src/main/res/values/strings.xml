@@ -4,4 +4,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_host">tel</string>
+    <string name="main_search">查询</string>
+    <string name="main_order">预定</string>
+    <string name="main_location">位置</string>
+    <string name="main_setting">设置</string>
+    <string name="main_search_title">线路详情查询</string>
+    <string name="keycode_back_alert_message">再按一次退出App</string>
 </resources>

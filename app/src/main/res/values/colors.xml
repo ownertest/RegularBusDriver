@@ -2,6 +2,7 @@
 <resources>
 
     <color name="tab_text_color">#6f7378</color>
+    <color name="common_title_bg_color">#2ba7dd</color>
 
 
 </resources>
