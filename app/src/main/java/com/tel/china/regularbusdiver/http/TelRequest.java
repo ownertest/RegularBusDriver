@@ -27,7 +27,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 
-public class QxfRequest extends Request<JSONObject> {
+public class TelRequest extends Request<JSONObject> {
     private final Response.Listener listener;
     private String url;
     private Map<String, String> params;
@@ -37,7 +37,7 @@ public class QxfRequest extends Request<JSONObject> {
 
     private static final String EVENT_API_REQUEST = "API";
 
-    public QxfRequest(int method, final String url, final QxfResponseListener<JSONObject> listener) {
+    public TelRequest(int method, final String url, final TelResponseListener<JSONObject> listener) {
         this(method, url, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -66,7 +66,7 @@ public class QxfRequest extends Request<JSONObject> {
         });
     }
 
-    public QxfRequest(int method, String url, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+    public TelRequest(int method, String url, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(method, url, errorListener);
         this.listener = listener;
         this.url = url;
@@ -89,7 +89,7 @@ public class QxfRequest extends Request<JSONObject> {
                 } else {
 //                    jsonString = AesUtil.decrypt(jsonString, secret);
 //                    Log.d("解密之后的数据: " + jsonString);
-                    Log.d("返回的数据格式错误：QxfRequest.parseNetworkResponse");
+                    Log.d("返回的数据格式错误：TelRequest.parseNetworkResponse");
                 }
             }
             Log.d("isCache " + isCache);

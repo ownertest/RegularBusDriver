@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import com.android.volley.VolleyError;
 import com.tel.china.regularbusdiver.R;
-import com.tel.china.regularbusdiver.http.QxfResponseListener;
+import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.http.UserHttper;
 import com.tel.china.regularbusdiver.ui.ClearableEditText;
 import com.tel.china.regularbusdiver.util.Log;
@@ -18,7 +18,7 @@ import org.json.JSONObject;
 /**
  * Created by zhaohaiyang on 16/1/22.
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener, QxfResponseListener<JSONObject>{
+public class LoginActivity extends BaseActivity implements View.OnClickListener, TelResponseListener<JSONObject> {
 
     public static final int REQUEST_LOGINSMS = 2001;
     public static final int REQUEST_REGISTER = 2002;

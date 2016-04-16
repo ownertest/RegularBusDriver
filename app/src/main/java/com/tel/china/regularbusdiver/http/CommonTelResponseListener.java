@@ -13,7 +13,7 @@ import com.tel.china.regularbusdiver.util.Log;
 import org.json.JSONObject;
 
 
-public abstract class CommonTelResponseListener extends BaseQxfResponseListener {
+public abstract class CommonTelResponseListener extends BaseTelResponseListener {
 
     public CommonTelResponseListener(BaseActivity activity, Dialog dialog) {
         super(activity, dialog);

@@ -5,7 +5,7 @@ import com.android.volley.VolleyError;
 import com.tel.china.regularbusdiver.util.Log;
 
 
-public class QxfRetryPolicy extends DefaultRetryPolicy {
+public class TelRetryPolicy extends DefaultRetryPolicy {
     /**
      * Constructs a new retry policy.
      *
@@ -13,7 +13,7 @@ public class QxfRetryPolicy extends DefaultRetryPolicy {
      * @param maxNumRetries     The maximum number of retries.
      * @param backoffMultiplier Backoff multiplier for the policy.
      */
-    public QxfRetryPolicy(int initialTimeoutMs, int maxNumRetries, float backoffMultiplier) {
+    public TelRetryPolicy(int initialTimeoutMs, int maxNumRetries, float backoffMultiplier) {
         super(initialTimeoutMs, maxNumRetries, backoffMultiplier);
     }
 
