@@ -7,6 +7,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import com.android.volley.VolleyLog;
+import com.baidu.mapapi.SDKInitializer;
 import com.tel.china.regularbusdiver.BuildConfig;
 import com.tel.china.regularbusdiver.Config;
 import com.tel.china.regularbusdiver.R;

@@ -25,6 +25,7 @@ public class LocationFragment extends BaseMainFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        SDKInitializer.initialize(mActivity.getApplicationContext());
         return LayoutInflater.from(mActivity).inflate(R.layout.location_fragment, null);
     }
 
@@ -36,9 +37,11 @@ public class LocationFragment extends BaseMainFragment {
 
     private void initView(View view) {
         mMapView = (MapView) view.findViewById(R.id.bmapView);
+        mMapView.onResume();
         mBaiduMap = mMapView.getMap();
         //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
+//        addCar();
     }
 
     private void addCar() {
