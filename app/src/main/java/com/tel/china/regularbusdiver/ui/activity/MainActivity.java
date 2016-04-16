@@ -51,7 +51,6 @@ public class MainActivity extends FragmentActivity implements QxfResponseListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_mian);
         initView();
         initData();

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.text.TextUtils;
 
 import com.android.volley.VolleyLog;
+import com.baidu.mapapi.SDKInitializer;
 import com.tel.china.regularbusdiver.BuildConfig;
 import com.tel.china.regularbusdiver.Config;
 import com.tel.china.regularbusdiver.R;
@@ -35,6 +36,7 @@ public class StdApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        SDKInitializer.initialize(this);
         host = getResources().getString(R.string.app_host);
         int pid = android.os.Process.myPid();
         String name = getApplicationContext().getPackageName();
