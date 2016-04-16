@@ -2,9 +2,6 @@ package com.tel.china.regularbusdiver.util;
 
 import com.tel.china.regularbusdiver.BuildConfig;
 
-/**
- * Created by wuyq on 14-5-7.
- */
 public final class Log {
     private static boolean debug = BuildConfig.DEBUG;
     public static final String TAG = "qxh";

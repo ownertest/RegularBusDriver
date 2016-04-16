@@ -2,7 +2,6 @@ package com.tel.china.regularbusdiver.http;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
 
@@ -12,16 +11,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-import com.creditease.zhiwang.BuildConfig;
-import com.creditease.zhiwang.Config;
-import com.creditease.zhiwang.QxfApplication;
-import com.creditease.zhiwang.activity.BaseActivity;
-import com.creditease.zhiwang.bean.User;
-import com.creditease.zhiwang.util.ChannelUtil;
-import com.creditease.zhiwang.util.ImageCache;
-import com.creditease.zhiwang.util.Log;
+import com.tel.china.regularbusdiver.BuildConfig;
+import com.tel.china.regularbusdiver.activity.BaseActivity;
 import com.tel.china.regularbusdiver.system.StdApplication;
-
+import com.tel.china.regularbusdiver.util.Log;
 import org.json.JSONObject;
 
 import java.util.HashMap;

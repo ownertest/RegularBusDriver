@@ -8,7 +8,12 @@ import android.text.TextUtils;
 
 import com.android.volley.VolleyLog;
 import com.tel.china.regularbusdiver.BuildConfig;
-
+import com.tel.china.regularbusdiver.Config;
+import com.tel.china.regularbusdiver.R;
+import com.tel.china.regularbusdiver.bean.User;
+import com.tel.china.regularbusdiver.http.RequestManager;
+import com.tel.china.regularbusdiver.util.Log;
+import com.tel.china.regularbusdiver.util.SharedPrefsUtil;
 
 
 /**
@@ -17,15 +22,14 @@ import com.tel.china.regularbusdiver.BuildConfig;
 public class StdApplication extends Application {
     public static long GESTURE_SHOW_DURATION = 5 * 60 * 1000;
     public static long TIME_WHEN_SCREEN_CLOSE = 0L;
-    public static String test_id = "";//AB 测试
-    public static String test_group = "";//AB 测试分组
-
     public static String host;
     public static String deviceGuid = "";
     public static StdApplication instance;
     public static String userAgent;
     private static User currentUser;
     private static String session_id;
+    private static String key_se_user;
+    private static String shared_prefs;
 
 
     @Override
@@ -38,7 +42,6 @@ public class StdApplication extends Application {
         for(ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
             if(processInfo.pid == pid && processInfo.processName.equalsIgnoreCase(name)) {
                 Log.d("application package name========: " + name);
-                initTracking();
                 break;
             }
         }
@@ -67,8 +70,6 @@ public class StdApplication extends Application {
         if (currentUser != null) {
             SharedPrefsUtil.saveEncryptUser(currentUser);
         }
-        map.put("userid", String.valueOf(user != null ? user.user_id : 0));
-        TrackingAgent.setAppKV(map);
     }
 
     public static String getSessionId() {
@@ -101,31 +102,5 @@ public class StdApplication extends Application {
             return false;
         }
     }
-    /**
-     *
-     * @param id    test id
-     * @param group test group
-     */
-    public static void updateABTestInfo(String id, String group) {
-        if (!test_id.equals(id) || !test_group.equals(group)) {
-            test_id = id;
-            test_group = group;
-
-            SharedPrefsUtil.putString(Config.key_test_id, test_id);
-            SharedPrefsUtil.putString(Config.key_test_group, test_group);
-        }
-    }
-
-    /**
-     * 从preference中取出ABTest相关的参�?     */
-    private void initABTestInfo() {
-        try {
-            test_id = SharedPrefsUtil.getString(Config.key_test_id);
-            test_group = SharedPrefsUtil.getString(Config.key_test_group);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 
 }

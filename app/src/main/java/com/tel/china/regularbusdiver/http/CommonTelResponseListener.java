@@ -2,22 +2,20 @@ package com.tel.china.regularbusdiver.http;
 
 import android.app.Dialog;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.creditease.zhiwang.Config;
-import com.creditease.zhiwang.ReturnCode;
-import com.creditease.zhiwang.activity.BaseActivity;
-import com.creditease.zhiwang.ui.Toast;
-import com.creditease.zhiwang.util.Log;
+import com.tel.china.regularbusdiver.Config;
+import com.tel.china.regularbusdiver.ReturnCode;
+import com.tel.china.regularbusdiver.activity.BaseActivity;
+import com.tel.china.regularbusdiver.util.Log;
 
 import org.json.JSONObject;
 
-/**
- * Created by long on 2014-12-28.
- */
-public abstract class CommonQxfResponseListener extends BaseQxfResponseListener {
 
-    public CommonQxfResponseListener(BaseActivity activity, Dialog dialog) {
+public abstract class CommonTelResponseListener extends BaseQxfResponseListener {
+
+    public CommonTelResponseListener(BaseActivity activity, Dialog dialog) {
         super(activity, dialog);
     }
 
