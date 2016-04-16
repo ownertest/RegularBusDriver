@@ -6,7 +6,8 @@ import android.text.TextUtils;
 
 import com.android.volley.VolleyError;
 import com.tel.china.regularbusdiver.Config;
-import com.tel.china.regularbusdiver.ReturnCode;import com.tel.china.regularbusdiver.activity.BaseActivity;
+import com.tel.china.regularbusdiver.ReturnCode;
+import com.tel.china.regularbusdiver.ui.activity.BaseActivity;
 import com.tel.china.regularbusdiver.util.Log;
 
 import org.json.JSONObject;

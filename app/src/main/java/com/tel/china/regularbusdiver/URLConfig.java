@@ -3,14 +3,13 @@ package com.tel.china.regularbusdiver;
 
 import android.text.format.DateUtils;
 
+import com.tel.china.regularbusdiver.system.StdApplication;
+
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by wuyq on 14-8-6.
- */
 public class URLConfig {
-    public static final String prefix = (BuildConfig.DEBUG ? "http://" : "https://") + QxfApplication.host + "/api";
+    public static final String prefix = (BuildConfig.DEBUG ? "http://" : "https://") + StdApplication.host + "/api";
     //验证手机号是否注册，并发送短信验证码
     public static final String http_user_exist_sms = prefix + "/user/exist/sms";
     //获取用户绑定过的银行卡

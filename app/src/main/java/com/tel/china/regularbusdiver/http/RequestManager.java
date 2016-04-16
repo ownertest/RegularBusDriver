@@ -12,7 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.tel.china.regularbusdiver.BuildConfig;
-import com.tel.china.regularbusdiver.activity.BaseActivity;
+import com.tel.china.regularbusdiver.ui.activity.BaseActivity;
 import com.tel.china.regularbusdiver.system.StdApplication;
 import com.tel.china.regularbusdiver.util.Log;
 import org.json.JSONObject;

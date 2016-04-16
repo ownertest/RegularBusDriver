@@ -5,4 +5,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- MainActivity 导航条 -->
+    <style name="NavigateView.Btn" parent="@android:style/Widget.TextView">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">@dimen/textsize_22</item>
+        <item name="android:textColor">@color/tab_text_color</item>
+        <item name="android:layout_marginTop">@dimen/px_4</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
 </resources>

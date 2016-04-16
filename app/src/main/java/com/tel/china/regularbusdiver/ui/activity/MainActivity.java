@@ -30,7 +30,7 @@ public class MainActivity extends FragmentActivity implements QxfResponseListene
     private NavigationBar mNavigationBar;
     private NoScrollViewPager mViewPager;
 
-    private int lastPos;// ÉÏ´ÎÓÃ»§Ñ¡ÖĞµÄÒ³¿¨
+    private int lastPos;// ä¸Šæ¬¡ç”¨æˆ·é€‰ä¸­çš„é¡µå¡
 //    private OnPagerScrollListener onScrollListener; //TODO
     private HashMap<Integer, OnFragmentSelectedListener> mSelectedListeners = new HashMap<Integer, OnFragmentSelectedListener>();
 
@@ -78,7 +78,7 @@ public class MainActivity extends FragmentActivity implements QxfResponseListene
 //    }
 
     /**
-     * ÊÇ·ñÔÊĞíViewPager»¬¶¯
+     * æ˜¯å¦å…è®¸ViewPageræ»‘åŠ¨
      */
     public void setViewPagerScrollEnable(boolean enable) {
         mViewPager.setNoScroll(!enable);
@@ -164,7 +164,7 @@ public class MainActivity extends FragmentActivity implements QxfResponseListene
 
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            if (position >= 0 && position < 3) {// ×îºóµÄÒ»¸öÒ³Ãæ²»ÄÜ»¬
+            if (position >= 0 && position < 3) {// æœ€åçš„ä¸€ä¸ªé¡µé¢ä¸èƒ½æ»‘
                 if (mNavigationBar != null) {
                     mNavigationBar.onTabChanged(positionOffset, position, position + 1);
                 }
