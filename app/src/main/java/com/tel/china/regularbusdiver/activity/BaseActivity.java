@@ -1,18 +1,18 @@
 package com.tel.china.regularbusdiver.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.tel.china.regularbusdiver.http.RequestManager;
 
-public abstract class BaseActivity {
+public abstract class BaseActivity extends Activity {
     protected final String TAG = this.getClass().getSimpleName();
-    public static BaseActivity sCurrentActivity;
+    public static BaseActivity mCurrentActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sCurrentActivity = this;
+        mCurrentActivity = this;
     }
 
     protected abstract int getContentViewId();
@@ -42,7 +42,7 @@ public abstract class BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        sCurrentActivity = this;
+        mCurrentActivity = this;
     }
 
     @Override
