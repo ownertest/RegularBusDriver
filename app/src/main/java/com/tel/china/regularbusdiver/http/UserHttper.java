@@ -52,18 +52,6 @@ public class UserHttper {
         RequestManager.backgroundRequest(filter, Request.Method.GET, URLConfig.http_user, param, listener);
     }
 
-    /**
-     * 获取用户与产品相关的uba list，如果传入producID为0，则获取该用户所有uba
-     *
-     * @param productID 要购买的产皮id
-     * @param listener
-     */
-    public static void backgroundBankCards(long productID, long assetID, QxfResponseListener<JSONObject> listener) {
-        Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.key_product_id, productID + "");
-        param.put(Config.key_asset_id, assetID + "");
-        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_user_bankcards, param, listener);
-    }
 
     public static void backgroundLogout(QxfResponseListener<JSONObject> listener) {
         Map<String, String> param = RequestManager.getCommonParams();
@@ -99,36 +87,9 @@ public class UserHttper {
         RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_forget_login_password, param, listener);
     }
 
-    public static void backgroundForgetTradePasswordAuth(String id_card_number, String bank_card_number, String verify_code, QxfResponseListener<JSONObject> listener) {
-        Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.key_id_card_number, id_card_number);
-        param.put(Config.key_bank_card_number, bank_card_number);
-        param.put(Config.key_verify_code, verify_code);
-        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_forget_trade_password_auth, param, listener);
-    }
 
-    public static void backgroundForgeTradePasswordSet(String trade_password, String realname_session_id, String id_card_number,
-                                                       QxfResponseListener<JSONObject> listener) {
-        Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.key_trade_password, trade_password);
-        param.put(Config.key_realname_session_id, realname_session_id);
-        param.put(Config.key_id_card_number, id_card_number);
-        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_forget_trade_password_set, param, listener);
-    }
 
-    public static void backgroundSetTradePasswordAuth(String password, QxfResponseListener<JSONObject> listener) {
-        Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.key_password, password);
-        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_trade_password_auth, param, listener);
-    }
 
-    public static void backgroundSetTradePasswordSet(String trade_password, String realname_session_id, String phone, QxfResponseListener<JSONObject> listener) {
-        Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.key_trade_password, trade_password);
-        param.put(Config.key_realname_session_id, realname_session_id);
-        param.put(Config.key_phone, phone);
-        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_trade_password_set, param, listener);
-    }
 
     public static void backgroundPwdCheck(String user_id, String password, QxfResponseListener<JSONObject> listener) {
         Map<String, String> param = RequestManager.getCommonParams();
