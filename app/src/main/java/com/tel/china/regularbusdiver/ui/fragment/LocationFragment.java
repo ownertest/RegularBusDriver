@@ -25,7 +25,6 @@ public class LocationFragment extends BaseMainFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SDKInitializer.initialize(mActivity);
         return LayoutInflater.from(mActivity).inflate(R.layout.location_fragment, null);
     }
 

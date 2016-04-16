@@ -40,10 +40,10 @@ public class UserHttper {
         RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_user_realname, param, listener);
     }
 
-    public static void backgroundUserLogin(String phone, String password, QxfResponseListener<JSONObject> listener) {
+    public static void backgroundUserLogin(String name, String password, QxfResponseListener<JSONObject> listener) {
         Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.key_phone, phone);
-        param.put(Config.key_password, password);
+        param.put(Config.userName, name);
+        param.put(Config.password, password);
         RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_user_login, param, listener);
     }
 

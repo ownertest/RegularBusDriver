@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class URLConfig {
-    public static final String prefix = (BuildConfig.DEBUG ? "http://" : "https://") + StdApplication.host + "/api";
+    public static final String prefix = "http://" + StdApplication.host;
     //验证手机号是否注册，并发送短信验证码
     public static final String http_user_exist_sms = prefix + "/user/exist/sms";
     //获取用户绑定过的银行卡
@@ -19,7 +19,7 @@ public class URLConfig {
     //实名认证
     public static final String http_user_realname = prefix + "/user/realname";
     //设置登录密码
-    public static final String http_user_login = prefix + "/user/login";
+    public static final String http_user_login = prefix + "/login";
     //登录
     public static final String http_user_register = prefix + "/user/register";
     //发送短信验证码

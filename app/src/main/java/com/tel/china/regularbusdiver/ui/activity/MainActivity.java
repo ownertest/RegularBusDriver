@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.baidu.mapapi.SDKInitializer;
 import com.tel.china.regularbusdiver.R;
 import com.tel.china.regularbusdiver.http.QxfResponseListener;
 import com.tel.china.regularbusdiver.listener.OnFragmentSelectedListener;
@@ -50,6 +51,7 @@ public class MainActivity extends FragmentActivity implements QxfResponseListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_mian);
         initView();
         initData();

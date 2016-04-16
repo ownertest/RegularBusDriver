@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--//小字体浅灰色格式-->
+
+    <style name="tv_small_light_grey">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/margin_15</item>
+        <item name="android:layout_marginTop">@dimen/margin_10</item>
+        <item name="android:textColor">@color/c_light_grey</item>
+        <item name="android:textSize">@dimen/font_13</item>
+    </style>
+
+    <!--//小字体浅灰色格式-->
+
+    <style name="tv_micro_light_grey" parent="tv_small_light_grey">
+        <item name="android:textSize">@dimen/font_11</item>
+    </style>
+
+    <!--//中号字体灰色格式-->
+
+    <style name="tv_medium_grey">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/margin_15</item>
+        <item name="android:layout_marginTop">@dimen/margin_10</item>
+        <item name="android:textColor">@color/b_grey</item>
+        <item name="android:textSize">@dimen/font_16</item>
+    </style>
+    <!--大号字体黑色格式-->
+    <style name="tv_large_black">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/a_black</item>
+        <item name="android:textSize">@dimen/font_22</item>
+    </style>
+
+    <!-- 普通字体黑色 -->
+    <style name="normal_black">
+        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:textColor">@color/a_black</item>
+    </style>
+
+    <style name="normal_black_et" parent="normal_black">
+        <item name="android:textColorHint">@color/c_light_grey</item>
+    </style>
+
+    <style name="normal_black_et_bt_height" parent="normal_black_et">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/bt_height</item>
+    </style>
+
+    <!--//小号字体链接格式-->
+
+    <style name="tv_small_link">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_10</item>
+        <item name="android:textColor">@color/f_link</item>
+        <item name="android:textSize">@dimen/font_13</item>
+    </style>
+
+    <style name="tv_grouping_desc">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/e_hint</item>
+        <item name="android:textSize">@dimen/font_16</item>
+        <item name="android:layout_marginTop">@dimen/margin_15</item>
+        <item name="android:layout_marginLeft">@dimen/margin_15</item>
+    </style>
+</resources>

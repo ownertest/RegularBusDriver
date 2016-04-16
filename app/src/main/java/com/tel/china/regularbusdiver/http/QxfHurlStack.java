@@ -11,9 +11,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by wuyq on 14-7-30.
- */
+
 public class QxfHurlStack extends HurlStack {
 
     public QxfHurlStack() {
@@ -27,6 +25,7 @@ public class QxfHurlStack extends HurlStack {
         if (additionalHeaders != null && additionalHeaders.size() > 0) {
             map.putAll(additionalHeaders);
         }
+        Log.d("LOGString", "perform end");
         return super.performRequest(request, map);
     }
 
