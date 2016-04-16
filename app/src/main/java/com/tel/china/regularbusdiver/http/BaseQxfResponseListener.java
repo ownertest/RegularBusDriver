@@ -6,8 +6,7 @@ import android.text.TextUtils;
 
 import com.android.volley.VolleyError;
 import com.tel.china.regularbusdiver.Config;
-import com.tel.china.regularbusdiver.ReturnCode;
-import com.creditease.zhiwang.activity.BaseActivity;
+import com.tel.china.regularbusdiver.ReturnCode;import com.tel.china.regularbusdiver.activity.BaseActivity;
 import com.tel.china.regularbusdiver.util.Log;
 
 import org.json.JSONObject;
@@ -46,7 +45,7 @@ public class BaseQxfResponseListener implements QxfResponseListener<JSONObject> 
         }
         //sessionID过期，提示重新登录.
         if (ReturnCode.ERROR_INVALID_SESSION == return_code) {
-            activity.showSessionIDErrorDialog(message);
+            //activity.showSessionIDErrorDialog(message);
         }
     }
 
@@ -60,7 +59,7 @@ public class BaseQxfResponseListener implements QxfResponseListener<JSONObject> 
             dialog.dismiss();
         }
         if (activity != null) {
-            activity.processCommonError(error);
+            //activity.processCommonError(error);
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.tel.china.regularbusdiver.http;
 
 
-import android.net.Uri;
 import android.text.TextUtils;
 
 import com.android.volley.Cache;
@@ -11,32 +10,23 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.creditease.tracking.TrackingAgent;
-import com.creditease.zhiwang.Config;
-import com.creditease.zhiwang.QxfApplication;
-import com.creditease.zhiwang.URLConfig;
-import com.creditease.zhiwang.util.Log;
-import com.creditease.zhiwang.util.Md5Util;
-import com.creditease.zhiwang.util.TrackingUtil;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.google.gson.Gson;
-import com.tendcloud.tenddata.TCAgent;
+import com.tel.china.regularbusdiver.Config;
+import com.tel.china.regularbusdiver.URLConfig;
+import com.tel.china.regularbusdiver.util.Log;
+import com.tel.china.regularbusdiver.util.Md5Util;
 
 import org.apache.http.protocol.HTTP;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-/**
- * Created by longyi on 14-12-24.
- */
+
 public class QxfRequest extends Request<JSONObject> {
     private final Response.Listener listener;
     private String url;
@@ -57,7 +47,6 @@ public class QxfRequest extends Request<JSONObject> {
                 } catch (Exception e) {
                     if (e != null && e.getMessage() != null) {
                         e.printStackTrace();
-                        trackNetworkError(e, url);
                     }
                 }
             }
@@ -70,7 +59,7 @@ public class QxfRequest extends Request<JSONObject> {
                 } catch (Exception e) {
                     if (e != null && e.getMessage() != null) {
                         e.printStackTrace();
-                        trackNetworkError(e, url);
+
                     }
                 }
             }
@@ -83,16 +72,7 @@ public class QxfRequest extends Request<JSONObject> {
         this.url = url;
     }
 
-    private static void trackNetworkError(Exception e, String url) {
-        TCAgent.onEvent(QxfApplication.instance.getApplicationContext(), url, e.getMessage());
-        //google analytics
-        Tracker tracker = QxfApplication.instance.getGaTracker();
-        tracker.send(new HitBuilders.EventBuilder()
-                .setCategory(TrackingUtil.GACategoryError)
-                .setAction(url)
-                .setLabel(e.getMessage())
-                .build());
-    }
+
 
     @Override
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
@@ -139,115 +119,21 @@ public class QxfRequest extends Request<JSONObject> {
 
     @Override
     protected void deliverResponse(JSONObject response) {
-        trackingApi(null);
         listener.onResponse(response);
-        saveABTestToken(response);
+
     }
 
-    /**
-     * tracking里加上这两个域。testid有三态：
-     * 1. 空字符串或者域不存在： 表示不做任何处理。tracking里的testid和testgroup保持上一次的值
-     * 2. “-1”：表示清空测试，tracking里的testid和testgroup都设为空字符串。
-     * 3. 其它非空字符串：更新测试，tracking里的testid和testgroup设为此次返回值
-     *
-     * @param response http response
-     */
-    private void saveABTestToken(JSONObject response) {
-        try {
-            String testID = response.optString(Config.key_test_id);
-            if (TextUtils.isEmpty(testID)) {
-                return;
-            }
-            if (testID.equals("-1")) {
-                QxfApplication.updateABTestInfo("", "");
-
-                return;
-            }
-            QxfApplication.updateABTestInfo(testID, response.optString(Config.key_test_group));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     @Override
     public void deliverError(VolleyError error) {
-        trackingApi(error);
+
         super.deliverError(error);
     }
 
 
-    private void trackingApi(VolleyError error) {
-        try {
-            long duration = System.currentTimeMillis() - startTime;
-            Uri uri = Uri.parse(this.url);
-            String path = uri.getPath();
-            if (path != null && path.startsWith("/"))
-                path = path.substring(1);
-            String api = path.replaceAll("/", "_");
-            if (api.startsWith("api_v1_for_user_")) {
-                api = api.substring("api_v1_for_user_".length());
-            }
-            Log.d("api " + api);
-            String network = Config.network_type;
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("duration", String.valueOf(duration));
-            map.put("api", api);
-            map.put("network", network);
-            if (!TextUtils.isEmpty(Config.wifissid)) {
-                map.put("wifissid", Config.wifissid);
-            }
-            //错误记录
-            if (error != null) {
-                String msg = error.getMessage();
-                if (msg != null && msg.length() > 200)
-                    msg = msg.substring(0, 200);
-                map.put("error_message", msg);
-                Throwable cause = error.getCause();
-                if (cause != null) {
-                    map.put("error_type", cause.getClass().getSimpleName());
-                }
-            }
-            TrackingAgent.onEvent(QxfApplication.instance.getApplicationContext(), EVENT_API_REQUEST, "", map);
-            String label = calcRequestTimeLabel(duration);
-            //talking data
-            TCAgent.onEvent(QxfApplication.instance.getApplicationContext(), api, label);
-            //google analytics
-            Tracker tracker = QxfApplication.instance.getGaTracker();
-            tracker.send(new HitBuilders.TimingBuilder()
-                    .setCategory("API")
-                    .setVariable(path)
-                    .setLabel(network)
-                    .setValue(duration)
-                    .build());
-        } catch (Exception e) {
-            //ignore
-        }
-    }
 
-    private String calcRequestTimeLabel(long duration) {
-        try {
-            String label;
-            String network = !TextUtils.isEmpty(Config.network_type) ? Config.network_type : "unknown";
-            if (duration <= 2000) {
-                //两秒以内的，100ms为间隔
-                long t = (long) (Math.ceil(duration / 100.0) * 100);
-                label = network + "_" + t + "ms";
-            } else if (duration <= 10000) {
-                //10秒以内的，以500ms为间隔
-                long t = (long) (Math.ceil(duration / 500.0) * 500);
-                label = network + "_" + t + "ms";
-            } else {
-                //大于10秒的统一计为10秒
-                label = network + "_gt10s";
-            }
-            return label;
-        } catch (Exception e) {
-            //ignore
-            e.printStackTrace();
-        }
-        return "";
-    }
+
 
     public Map<String, String> getParams() {
         return params;

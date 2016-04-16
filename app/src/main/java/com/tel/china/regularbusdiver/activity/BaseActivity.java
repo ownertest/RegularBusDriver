@@ -3,6 +3,7 @@ package com.tel.china.regularbusdiver.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.tel.china.regularbusdiver.http.RequestManager;
 
 public abstract class BaseActivity extends Activity {
@@ -54,5 +55,7 @@ public abstract class BaseActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 
 }
