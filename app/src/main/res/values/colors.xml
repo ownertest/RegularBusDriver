@@ -1,7 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="tab_text_color">#6f7378</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 
+    <color name="app_color_primary">#F7F7F5</color>
+    <color name="app_color_primary_dark">#b2b2b2</color>
+    <color name="app_color_primary_dark_red">#c32a2a</color>
+    <color name="app_color_primary_red">#DE4343</color>
+    <color name="white">#ffffff</color>
+    <color name="z_activity_bg">#ececec</color>
+    <color name="y_action_bar_bg">#f7f7f5</color>
+    <color name="a_black">#212121</color>
+    <color name="blue">#2891f7</color>
+    <color name="blue_pressed">#1e7ef5</color>
+    <color name="g_red">#d32f2f</color>
+    <color name="red_pressed">#c12a2a</color>
+    <color name="bt_disable">#bbbcbf</color>
+    <color name="b_grey">#646466</color>
+    <color name="v_divider">#d6d6d6</color>
 
+    <color name="split_tab_pressed">#828282</color>
+
+    <color name="d_sub_title">#4b4b4c</color>
+
+    <color name="green">#1ebc7c</color>
+    <color name="green_hint">#38B165</color>
+    <color name="c_light_grey">#c8c8cc</color>
+
+    <color name="j_yellow">#fbb829</color>
+    <color name="yellow_pressed">#e3a600</color>
+    <color name="yellow_divider">#fccb63</color>
+    <color name="yellow_outer">#f2eee6</color>
+
+    <color name="l_tab_color">#929292</color>
+    <color name="k_tab_pressed_color">#d32f2f</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="f_link">#0678ca</color>
+    <color name="f0_link_pressed">#0b66a8</color>
+
+    <color name="buy_button_border">#0db3c8</color>
+
+    <color name="loading_dialog_bg">#cc000000</color>
+
+    <color name="wrong_red">#ef5e75</color>
+    <color name="grey_pressed">#f2f0f0</color>
+
+    <color name="sign_activity_red">#ac1414</color>
+    <color name="sign_activity_yellow">#ffe9af</color>
+
+    <color name="waring_bg">#fffbcc</color>
+    <color name="e_hint">#afafb2</color>
+
+    <color name="duration_interest_bg">#f4f4f5</color>
+
+    <color name="welcome_progress_gradient_start">#ff1415</color>
+    <color name="welcome_progress_gradient_end">#fd09a4</color>
+    <color name="welcome_progress_bg">#423002</color>
+    <color name="last_welcome_new_bg">#f46808</color>
+
+    <color name="u_product_bg">#fcfcfc</color>
+
+    <color name="extra_body">#556270</color>
+    <color name="toolbar_divider_color">#D9DbDb</color>
+    <color name="asset_menu_text_color">#f57373</color>
+    <color name="asset_item_extra_desc_bg">#f7f7f7</color>
+    <color name="liquidate_rate_adjust_btn_bg">#c53f46</color>
+
+    //鑹插�琛�    <color name="w_navigation_title">#3d4245</color>
+    <color name="i_green">#0f9a8c</color>
+
+    <color name="dialog_divider">#ebebe9</color>
+    //chart view
+    <color name="chart_view_fill_color">#80FBEAEA</color>
+    <color name="chart_view_grid_color">#f0f0f0</color>
+    <color name="random_num_color">#cc374b</color>
+    <color name="accent_material_light" tools:ignore="PrivateResource">#4070ff</color>
+    //Progress Cart View
+    <color name="prog_cart_arc_color">#D32F2F</color>
+    <color name="prog_cart_arc_bg_color">#E6E6E6</color>
+    <color name="lqdt_progress_bg_start_color">#e6e6e6</color>
+    <color name="lqdt_progress_bg_end_color">#e6e6e6</color>
+    <color name="lqdt_progress_start_color">#b43f46</color>
+    <color name="lqdt_progress_end_color">#d63f46</color>
+    //
+    <color name="ad_count_down_bg_color">#88000000</color>
+
+    <color name="segment_seleccted">#6d2b2f</color>
 </resources>

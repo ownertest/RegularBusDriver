@@ -42,7 +42,9 @@ public class StdApplication extends Application {
         for(ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
             if(processInfo.pid == pid && processInfo.processName.equalsIgnoreCase(name)) {
                 Log.d("application package name========: " + name);
+                initVolley();
                 break;
+
             }
         }
         instance = this;

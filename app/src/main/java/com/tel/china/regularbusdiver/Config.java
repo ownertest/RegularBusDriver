@@ -20,4 +20,8 @@ public class Config {
     public static final String key_old_password = "key_id_card_number";
     public static final String key_verify_code = "key_verify_code";
     public static final String key_last_message_id = "key_last_message_id";
+    public static final String userName = "userName";
+    public static final String password = "password";
+
 }
+
