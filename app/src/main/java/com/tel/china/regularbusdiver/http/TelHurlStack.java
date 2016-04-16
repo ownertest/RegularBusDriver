@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class QxfHurlStack extends HurlStack {
+public class TelHurlStack extends HurlStack {
 
-    public QxfHurlStack() {
+    public TelHurlStack() {
         super();
     }
 
     @Override
     public HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders) throws IOException, AuthFailureError {
-        Log.d("QxfHurlStack#performRequest");
+        Log.d("TelHurlStack#performRequest");
         Map<String, String> map = new HashMap<>(RequestManager.getExtraHeader());
         if (additionalHeaders != null && additionalHeaders.size() > 0) {
             map.putAll(additionalHeaders);

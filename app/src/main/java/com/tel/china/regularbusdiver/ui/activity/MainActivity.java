@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.baidu.mapapi.SDKInitializer;
 import com.tel.china.regularbusdiver.R;
-import com.tel.china.regularbusdiver.http.QxfResponseListener;
+import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.listener.OnFragmentSelectedListener;
 import com.tel.china.regularbusdiver.ui.fragment.LocationFragment;
 import com.tel.china.regularbusdiver.ui.fragment.OrderFragment;
@@ -27,7 +27,7 @@ import com.tel.china.regularbusdiver.util.NavigationBar;
 
 import java.util.HashMap;
 
-public class MainActivity extends FragmentActivity implements QxfResponseListener {
+public class MainActivity extends FragmentActivity implements TelResponseListener {
     private PageAdapter adapter;
     private NavigationBar mNavigationBar;
     private NoScrollViewPager mViewPager;

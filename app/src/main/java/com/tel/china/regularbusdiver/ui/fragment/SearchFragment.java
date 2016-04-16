@@ -12,8 +12,7 @@ import android.widget.ListView;
 
 import com.android.volley.VolleyError;
 import com.tel.china.regularbusdiver.R;
-import com.tel.china.regularbusdiver.http.QxfResponseListener;
-import com.tel.china.regularbusdiver.ui.activity.MainActivity;
+import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.ui.adapter.LineItemAdapter;
 import com.tel.china.regularbusdiver.util.LineItem;
 import com.tel.china.regularbusdiver.util.TitleBar;
@@ -21,7 +20,7 @@ import com.tel.china.regularbusdiver.util.TitleBar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchFragment extends BaseMainFragment implements QxfResponseListener{
+public class SearchFragment extends BaseMainFragment implements TelResponseListener{
     private TitleBar mTitle;
     private ListView mListView;
     private LineItemAdapter mAdapter;

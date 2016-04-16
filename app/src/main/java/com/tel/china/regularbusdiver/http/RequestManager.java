@@ -39,7 +39,7 @@ public class RequestManager {
     }
 
     public static void init(Context context) {
-        requestQueue = Volley.newRequestQueue(context, new QxfHurlStack());
+        requestQueue = Volley.newRequestQueue(context, new TelHurlStack());
         //初始化请求头
         initExtraHeader();
     }
@@ -77,21 +77,21 @@ public class RequestManager {
     /**
      * 当发起此请求的activity执行onDestroy时，此request会被cancel
      */
-    public static void backgroundRequest(int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener) {
+    public static void backgroundRequest(int method, String url, Map<String, String> params, TelResponseListener<JSONObject> listener) {
         backgroundRequest(method, url, params, listener, (int) (DateUtils.SECOND_IN_MILLIS * 30));
     }
 
     /**
      * @param filter request cancel 的filter
      */
-    public static void backgroundRequest(String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener) {
+    public static void backgroundRequest(String filter, int method, String url, Map<String, String> params, TelResponseListener<JSONObject> listener) {
         backgroundRequest(filter, method, url, params, listener, (int) (DateUtils.SECOND_IN_MILLIS * 30));
     }
 
     /**
      * 当发起此请求的activity执行onDestroy时，此request会被cancel
      */
-    public static void backgroundRequest(int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener, int timeoutMS) {
+    public static void backgroundRequest(int method, String url, Map<String, String> params, TelResponseListener<JSONObject> listener, int timeoutMS) {
         backgroundRequest(BaseActivity.mCurrentActivity == null ? null : BaseActivity.mCurrentActivity.getClass().getName()
                 , method, url, params, listener, timeoutMS);
     }
@@ -99,11 +99,11 @@ public class RequestManager {
     /**
      * @param filter request cancel 的filter
      */
-    public static void backgroundRequest( String filter, int method, String url, Map<String, String> params, QxfResponseListener<JSONObject> listener, int timeoutMS) {
-        QxfRequest request = new QxfRequest(method, url, listener);
+    public static void backgroundRequest( String filter, int method, String url, Map<String, String> params, TelResponseListener<JSONObject> listener, int timeoutMS) {
+        TelRequest request = new TelRequest(method, url, listener);
         if (!TextUtils.isEmpty(filter))
             request.setTag(filter);
-        request.setRetryPolicy(new QxfRetryPolicy(timeoutMS, DEFAULT_MAX_RETRIES, DEFAULT_BACKOFF_MULT));
+        request.setRetryPolicy(new TelRetryPolicy(timeoutMS, DEFAULT_MAX_RETRIES, DEFAULT_BACKOFF_MULT));
         request.setParams(params);
 
         RequestQueue queue = RequestManager.getRequestQueue();
@@ -113,7 +113,7 @@ public class RequestManager {
     }
 
     public static void clearCache(String url, Map<String, String> params) {
-        QxfRequest request = new QxfRequest(Request.Method.GET, url, new QxfResponseListener<JSONObject>() {
+        TelRequest request = new TelRequest(Request.Method.GET, url, new TelResponseListener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
 

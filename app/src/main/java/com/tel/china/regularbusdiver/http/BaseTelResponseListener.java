@@ -13,11 +13,11 @@ import com.tel.china.regularbusdiver.util.Log;
 import org.json.JSONObject;
 
 
-public class BaseQxfResponseListener implements QxfResponseListener<JSONObject> {
+public class BaseTelResponseListener implements TelResponseListener<JSONObject> {
     protected BaseActivity activity;
     protected Dialog dialog;
 
-    public BaseQxfResponseListener(BaseActivity activity, Dialog dialog) {
+    public BaseTelResponseListener(BaseActivity activity, Dialog dialog) {
         this.activity = activity;
         this.dialog = dialog;
     }
