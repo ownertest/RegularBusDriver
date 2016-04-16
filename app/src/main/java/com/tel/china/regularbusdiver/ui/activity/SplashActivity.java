@@ -1,4 +1,4 @@
-package com.tel.china.regularbusdiver.activity;
+package com.tel.china.regularbusdiver.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;

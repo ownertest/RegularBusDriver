@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="54dp">
+
+    <RelativeLayout
+        android:id="@+id/navigation_btn_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navigation_home_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:background="@android:color/darker_gray"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:id="@+id/navigation_home_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/navigation_home_img"
+            android:text="查询"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/navigation_btn_cars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navigation_cars_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:background="@android:color/darker_gray"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/navigation_cars_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/navigation_cars_img"
+            android:text="预定"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/navigation_btn_discount"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navigation_discount_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:background="@android:color/darker_gray"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/navigation_discount_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/navigation_discount_img"
+            android:text="位置"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/navigation_btn_mine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/navigation_mine_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="7dp"
+            android:background="@android:color/darker_gray"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:id="@+id/navigation_mine_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/navigation_mine_img"
+            android:text="个人"/>
+    </RelativeLayout>
+
+</LinearLayout>
