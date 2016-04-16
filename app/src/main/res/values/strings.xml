@@ -22,5 +22,6 @@
     <string name="set_password_hint">6-20位字符</string>
     <string name="SplashActivity">SplashActivity</string>
     <string name="LoginActivity">LoginActivity</string>
+    <string name="login_fail">登陆失败，重新登陆</string>
 
 </resources>

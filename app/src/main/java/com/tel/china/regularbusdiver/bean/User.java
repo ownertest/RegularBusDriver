@@ -5,21 +5,18 @@ import java.lang.reflect.Field;
 
 
 public class User implements Serializable, Cloneable {
-    public long user_id;
-    public String mobile_phone;
-    public boolean has_realname_verify;
+    public String user_id;
     public String name;
-    public boolean has_trade_password;
-    public boolean has_risk_test;
-    public boolean need_trade_password;
-    public int remain_retry_count;
     //user bean end
-
     public String user_token;
     public String user_secret;
 
     public AccountEntry[] account_entries;
 
+    public User(String userId, String name) {
+        this.user_id = userId;
+        this.name = name;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
