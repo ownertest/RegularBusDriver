@@ -5,11 +5,26 @@ package com.tel.china.regularbusdiver.bean;
  */
 public class ClassLines {
     String lineTime;
+
+
+    String belongLine;
     int lineId;
     int id;
     int timeSeat;
     int freeSeat;
     int lineDirection;
+    public ClassLines(){}
+    public ClassLines(String lineTime, String belongLine) {
+        this.belongLine = belongLine;
+        this.lineTime = lineTime;
+    }
+    public String getBelongLine() {
+        return belongLine;
+    }
+
+    public void setBelongLine(String belongLine) {
+        this.belongLine = belongLine;
+    }
 
     public String getLineTime() {
         return lineTime;
@@ -59,6 +74,10 @@ public class ClassLines {
         this.lineDirection = lineDirection;
     }
 
-
+    //这个用来显示在PickerView上面的字符串,PickerView会通过反射获取getPickerViewText方法显示出来。
+    public String getPickerViewText() {
+        //这里还可以判断文字超长截断再提供显示
+        return lineTime;
+    }
 
 }

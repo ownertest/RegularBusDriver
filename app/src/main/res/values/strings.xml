@@ -32,6 +32,9 @@
     <string name = "line_detail_btn_order">座位预定</string>
     <string name="title_activity_line_detail">LineDetailActivity</string>
     <string name="order_title">预约班车</string>
-    <string name="order_confirm">确定</string>
+    <string name="order_yes">已经预定，点击取消</string>
+    <string name="order_no">没有预定</string>
+    <string name="order_yes1">已经预定过</string>
+
 
 </resources>

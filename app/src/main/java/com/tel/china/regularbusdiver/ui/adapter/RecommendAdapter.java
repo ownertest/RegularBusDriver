@@ -55,7 +55,7 @@ public class RecommendAdapter extends BaseAdapter{
         if (null != mData) {
             ClassLines classLines = mData.get(i);
             if (null != classLines) {
-                holder.recommendItem.setText(classLines.getLineTime());
+                holder.recommendItem.setText(classLines.getBelongLine() + "发车时间" + classLines.getLineTime());
             }
         }
         return view;

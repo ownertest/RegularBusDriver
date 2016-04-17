@@ -7,6 +7,47 @@ import java.lang.reflect.Field;
 public class User implements Serializable, Cloneable {
     public String user_id;
     public String name;
+
+    public String getUser_token() {
+        return user_token;
+    }
+
+    public void setUser_token(String user_token) {
+        this.user_token = user_token;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUser_secret() {
+        return user_secret;
+    }
+
+    public void setUser_secret(String user_secret) {
+        this.user_secret = user_secret;
+    }
+
+    public AccountEntry[] getAccount_entries() {
+        return account_entries;
+    }
+
+    public void setAccount_entries(AccountEntry[] account_entries) {
+        this.account_entries = account_entries;
+    }
+
     //user bean end
     public String user_token;
     public String user_secret;
