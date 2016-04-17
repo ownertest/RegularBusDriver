@@ -11,6 +11,7 @@ public class Schedule implements Parcelable {
     private String time;
     private String order;
     private String free;
+    private String lineId;
 
     @Override
     public int describeContents() {
@@ -22,18 +23,21 @@ public class Schedule implements Parcelable {
         parcel.writeString(time);
         parcel.writeString(order);
         parcel.writeString(free);
+        parcel.writeString(lineId);
     }
 
     public Schedule(Parcel in) {
         time = in.readString();
         order = in.readString();
         free = in.readString();
+        lineId = in.readString();
     }
 
-    public Schedule(String t, String o, String f) {
+    public Schedule(String t, String o, String f, String lineId) {
         time = t;
         order = o;
         free = f;
+        this.lineId = lineId;
     }
 
     public String getTime() {
@@ -60,4 +64,11 @@ public class Schedule implements Parcelable {
         this.free = free;
     }
 
+    public String getLineId() {
+        return lineId;
+    }
+
+    public void setLineId(String lineId) {
+        this.lineId = lineId;
+    }
 }

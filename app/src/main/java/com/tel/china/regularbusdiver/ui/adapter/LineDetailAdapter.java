@@ -1,6 +1,7 @@
 package com.tel.china.regularbusdiver.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.tel.china.regularbusdiver.R;
+import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.http.UserHttper;
+import com.tel.china.regularbusdiver.system.StdApplication;
+import com.tel.china.regularbusdiver.ui.activity.LoginActivity;
+import com.tel.china.regularbusdiver.util.LineItem;
 import com.tel.china.regularbusdiver.util.ListUtils;
 import com.tel.china.regularbusdiver.util.Log;
 import com.tel.china.regularbusdiver.util.Schedule;
@@ -19,7 +25,7 @@ import java.util.List;
 /**
  * Created by MapleHua on 2016/4/17 0017.
  */
-public class LineDetailAdapter extends BaseAdapter {
+public class LineDetailAdapter extends BaseAdapter implements TelResponseListener{
     private List<Schedule> mData;
     private Context mContext;
 
@@ -57,7 +63,7 @@ public class LineDetailAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
         if (null != mData && null != mData.get(i)) {
-            Schedule schedule = mData.get(i);
+            final Schedule schedule = mData.get(i);
             holder.mTime.setText(schedule.getTime());
             holder.mOrder.setText(schedule.getOrder());
             holder.mFree.setText(schedule.getFree());
@@ -66,11 +72,26 @@ public class LineDetailAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
                     Log.e("LOGString", "orderd!");
-                    //TODO UserHttper
+                    if (!StdApplication.isLogin()) {
+                        Intent intent = new Intent(mContext, LoginActivity.class);
+                        mContext.startActivity(intent);
+                    } else {
+                        UserHttper.backgroundRequestarOrder(schedule.getLineId(), "1", StdApplication.getCurrentUser().name, LineDetailAdapter.this);
+                    }
                 }
             });
         }
         return view;
+    }
+
+    @Override
+    public void onResponse(Object response) {
+        Log.e("LOGString", "order = " +response.toString());
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
     }
 
     class ViewHolder {

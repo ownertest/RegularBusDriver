@@ -52,6 +52,14 @@ public class UserHttper {
         RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_car_info_detail, param, listener);
     }
 
+    public static void backgroundRequestarOrder(String tag, String operation, String userName, TelResponseListener<JSONObject> listener) {
+        Map<String, String> param = RequestManager.getCommonParams();
+        //operation == 1 order operation == 0 cancel order
+        param.put(Config.http_tag, tag);
+        param.put(Config.http_operation, operation);
+        param.put(Config.userName, userName);
+        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_order_line, param, listener);
+    }
     public static void backgroundRequestOrderQuery(String lineId, String userName, TelResponseListener<JSONObject> listener) {
         Map<String, String> param = RequestManager.getCommonParams();
         param.put(Config.line_id, lineId);

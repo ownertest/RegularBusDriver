@@ -23,11 +23,10 @@ public class Config {
     public static final String userName = "userName";
     public static final String password = "password";
     public static final String http_result = "result";
-    public static final String http_line_num = "lineNum";
     public static final String line_num = "lineNum";
+    public static final String http_tag = "tag";
+    public static final String http_operation = "operation";
     public static final String line_id = "lineId";
-
-
 
 }
 

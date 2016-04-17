@@ -11,7 +11,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.R;
+import com.tel.china.regularbusdiver.bean.ClassLines;
+import com.tel.china.regularbusdiver.bean.Station;
+import com.tel.china.regularbusdiver.bean.carInfoDetail;
 import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.http.UserHttper;
 import com.tel.china.regularbusdiver.ui.adapter.LineDetailAdapter;
@@ -34,6 +38,10 @@ public class LineDetailActivity extends Activity implements TelResponseListener{
 
     private ListView mListView;
     private LineDetailAdapter mAdapter;
+    private carInfoDetail mCarInfoDetail;
+    private String allStations;
+    private List<Schedule> mData = new ArrayList<Schedule>();
+    private final static int LIST = 1;
 
     private class MyHandler implements Handler.Callback {
 
@@ -42,6 +50,9 @@ public class LineDetailActivity extends Activity implements TelResponseListener{
             if (!isFinishing()) {
                 switch (message.what) {
                     default:
+                    case LIST:
+                        mAdapter.setData(mData, LineDetailActivity.this);
+                        mAdapter.notifyDataSetChanged();
                         break;
                 }
             }
@@ -85,16 +96,16 @@ public class LineDetailActivity extends Activity implements TelResponseListener{
             mListView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
 
-            //Test
-            Schedule s1 = new Schedule("08:00", "12", "18");
-            Schedule s2 = new Schedule("08:20", "10", "20");
-            Schedule s3 = new Schedule("09:10", "22", "31");
-            Schedule s4 = new Schedule("11:00", "18", "30");
-            Schedule s5 = new Schedule("11:20", "15", "40");
-            List<Schedule> list = new ArrayList<>();
-            list.add(s1);list.add(s2);list.add(s3);list.add(s4);list.add(s5);
-            mAdapter.setData(list, this);
-            mAdapter.notifyDataSetChanged();
+//            //Test
+//            Schedule s1 = new Schedule("08:00", "12", "18");
+//            Schedule s2 = new Schedule("08:20", "10", "20");
+//            Schedule s3 = new Schedule("09:10", "22", "31");
+//            Schedule s4 = new Schedule("11:00", "18", "30");
+//            Schedule s5 = new Schedule("11:20", "15", "40");
+//            List<Schedule> list = new ArrayList<>();
+//            list.add(s1);list.add(s2);list.add(s3);list.add(s4);list.add(s5);
+//            mAdapter.setData(list, this);
+//            mAdapter.notifyDataSetChanged();
             //end test
 
             requestLineDetailInfo();
@@ -111,12 +122,26 @@ public class LineDetailActivity extends Activity implements TelResponseListener{
     }
 
     private void requestLineDetailInfo() {
-//        UserHttper.backgroundRequestLineDetailData(mLineNum, this);
+        UserHttper.backgroundRequestarInfoDetail(mLineNum, this);
     }
 
     @Override
     public void onResponse(Object response) {
 
+        mCarInfoDetail = new Gson().fromJson(response.toString(), carInfoDetail.class);
+        if (null != mCarInfoDetail && mCarInfoDetail.getResult().equals("1")) {
+            List<Station> stations = mCarInfoDetail.getStation();
+            allStations = "途径各站：";
+            for (int i = 0; i < stations.size()-2; i++) {
+                allStations += (stations.get(i).getName() + " - ");
+            }
+            allStations += stations.get(stations.size() - 1).getName();
+            for (ClassLines line : mCarInfoDetail.getClassLines()) {
+                Schedule s = new Schedule(line.getLineTime(), "" + (line.getTimeSeat() - line.getFreeSeat()), "" + line.getFreeSeat(), "" + line.getLineId());
+                mData.add(s);
+            }
+            myHandler.obtainMessage(LIST).sendToTarget();
+        }
     }
 
     @Override
