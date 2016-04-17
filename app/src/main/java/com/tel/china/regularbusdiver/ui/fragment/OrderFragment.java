@@ -16,8 +16,10 @@ import com.tel.china.regularbusdiver.R;
 import com.tel.china.regularbusdiver.bean.CarInfoDetail;
 import com.tel.china.regularbusdiver.bean.ClassLines;
 import com.tel.china.regularbusdiver.bean.Line;
+import com.tel.china.regularbusdiver.bean.User;
 import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.http.UserHttper;
+import com.tel.china.regularbusdiver.system.StdApplication;
 import com.tel.china.regularbusdiver.ui.adapter.RecommendAdapter;
 import com.tel.china.regularbusdiver.util.LineInfo;
 import com.tel.china.regularbusdiver.util.LineInfoResult;
@@ -31,7 +33,7 @@ import java.util.List;
 
 public class OrderFragment extends BaseMainFragment {
     private ArrayList<Line> options1Items = new ArrayList<Line>();
-    private ArrayList<ArrayList<String>> options2Items = new ArrayList<ArrayList<String>>();
+    private ArrayList<ArrayList<ClassLines>> options2Items = new ArrayList<ArrayList<ClassLines>>();
     private OptionsPickerView pvOptions;
     private View vMasker;
     private TextView selectBus;
@@ -60,18 +62,19 @@ public class OrderFragment extends BaseMainFragment {
         orderConfirm = (Button) view.findViewById(R.id.bt_confirm);
         pvOptions = new OptionsPickerView(view.getContext());
         mTitle = (TitleBar) view.findViewById(R.id.order_titlebar);
-        mListView = (ListView) view.findViewById(R.id.serch_listview);
-
+        mListView = (ListView) view.findViewById(R.id.recommend_listview);
         mTitle.showBackButton(false);
     }
 
     private  void initData() {
 
         mTitle.setTitleText(R.string.order_title);
-       // mListView.setAdapter(mRecommedAdapter);
+        mRecommedAdapter = new RecommendAdapter();
+        mListView.setAdapter(mRecommedAdapter);
         List<ClassLines> recommendCars = new ArrayList<ClassLines>();
-//        recommendCars.add()
-//        mRecommedAdapter.setData();
+        recommendCars.add(new ClassLines("12:12", "线路1"));
+        recommendCars.add(new ClassLines("11:12", "线路1"));
+        mRecommedAdapter.setData(recommendCars, mActivity);
 //        options1Items.add(new Line(0,"线路一"));
 //        options1Items.add(new Line(1,"线路二"));
 //        options1Items.add(new Line(3,"线路三"));
@@ -99,8 +102,21 @@ public class OrderFragment extends BaseMainFragment {
                 //返回的分别是三个级别的选中位置
                 if (options1Items.size() > options1 && options2Items.get(options1).size() > option2) {
                     String tx = options1Items.get(options1).getPickerViewText()
-                            + options2Items.get(options1).get(option2);
+                            + options2Items.get(options1).get(option2).getLineTime();
                     Log.d("OrderFragment", tx);
+                    int lineId = options2Items.get(options1).get(option2).getLineId();
+                    User cu = StdApplication.getCurrentUser();
+                    UserHttper.backgroundRequestOrderQuery(lineId + "", cu.getName(), new TelResponseListener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                        }
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    });
                 }
                 vMasker.setVisibility(View.GONE);
             }
@@ -123,7 +139,7 @@ public class OrderFragment extends BaseMainFragment {
 
     public void requestLineData() {
         UserHttper.backgroundRequestLineData(new TelResponseListener<JSONObject>() {
-            ArrayList<String> options2Items_01 = new ArrayList<String>();
+           // ArrayList<String> options2Items_01;
             @Override
             public void onResponse(JSONObject response) {
                 Log.e("LOGString", response.toString());
@@ -133,6 +149,7 @@ public class OrderFragment extends BaseMainFragment {
                     for(int i = 0; i < lineInfos.size(); i++) {
                         String lineNum = lineInfos.get(i).getLineNum();
                         options1Items.add(new Line(i, "线路" + lineNum));
+                        final ArrayList<ClassLines>  options2Items_01 = new ArrayList<ClassLines>();
                         UserHttper.backgroundRequestarInfoDetail(lineNum, new TelResponseListener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
@@ -140,11 +157,9 @@ public class OrderFragment extends BaseMainFragment {
                                 mCarInfoDetail = new Gson().fromJson(response.toString(), CarInfoDetail.class);
                                 if (null != mCarInfoDetail && mCarInfoDetail.getResult().equals("1")) {
                                     int count = mCarInfoDetail.getClassLines().size();
-                                    Log.e("LOGString", "333" +count);
-
                                     for (int i = 0; i < count; i++) {
                                         Log.e("LOGString", "22" + mCarInfoDetail.getClassLines().get(i).getLineTime());
-                                        options2Items_01.add(mCarInfoDetail.getClassLines().get(i).getLineTime());
+                                        options2Items_01.add(mCarInfoDetail.getClassLines().get(i));
                                     }
                                 } else {
                                     Log.e("LOGString", "error--" + mCarInfoDetail.toString());

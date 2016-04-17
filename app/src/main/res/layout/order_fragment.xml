@@ -26,9 +26,9 @@
     <ListView
         android:id="@+id/recommend_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:listSelector="@drawable/list_selector"
-        android:layout_below="@id/search_titlebar"
+        android:layout_below="@id/recomendLine"
         android:divider="@color/separator_line_color"
         android:dividerHeight="1px"/>
 
