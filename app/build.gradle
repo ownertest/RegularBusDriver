@@ -5,7 +5,7 @@ android {
         bus {
             keyAlias 'bus.keystore'
             keyPassword 'xiaohua'
-            storeFile file('I://RegularBusDiver/bus.keystore')
+            storeFile file('D://bus.keystore')
             storePassword 'xiaohua'
         }
     }

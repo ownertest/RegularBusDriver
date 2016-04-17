@@ -5,21 +5,42 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.bigkoo.pickerview.OptionsPickerView;
+import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.R;
+import com.tel.china.regularbusdiver.bean.CarInfoDetail;
+import com.tel.china.regularbusdiver.bean.ClassLines;
 import com.tel.china.regularbusdiver.bean.Line;
+import com.tel.china.regularbusdiver.http.TelResponseListener;
+import com.tel.china.regularbusdiver.http.UserHttper;
+import com.tel.china.regularbusdiver.ui.adapter.RecommendAdapter;
+import com.tel.china.regularbusdiver.util.LineInfo;
+import com.tel.china.regularbusdiver.util.LineInfoResult;
 import com.tel.china.regularbusdiver.util.Log;
+import com.tel.china.regularbusdiver.util.TitleBar;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderFragment extends BaseMainFragment {
     private ArrayList<Line> options1Items = new ArrayList<Line>();
     private ArrayList<ArrayList<String>> options2Items = new ArrayList<ArrayList<String>>();
-    OptionsPickerView pvOptions;
-    View vMasker;
-    TextView selectBus;
+    private OptionsPickerView pvOptions;
+    private View vMasker;
+    private TextView selectBus;
+    private TitleBar mTitle;
+    private LineInfoResult mLineInfoResult;
+    private CarInfoDetail mCarInfoDetail;
+    private Button orderConfirm;
+    private ListView mListView;
+    private RecommendAdapter mRecommedAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,45 +57,51 @@ public class OrderFragment extends BaseMainFragment {
     private void initView(View view) {
         vMasker = (View) view.findViewById(R.id.vMasker);
         selectBus =(TextView) view.findViewById(R.id.bt_select_bus);
+        orderConfirm = (Button) view.findViewById(R.id.bt_confirm);
         pvOptions = new OptionsPickerView(view.getContext());
+        mTitle = (TitleBar) view.findViewById(R.id.order_titlebar);
+        mListView = (ListView) view.findViewById(R.id.serch_listview);
 
+        mTitle.showBackButton(false);
     }
 
     private  void initData() {
-        options1Items.add(new Line(0,"线路一"));
-        options1Items.add(new Line(1,"线路二"));
-        options1Items.add(new Line(3,"线路三"));
-        ArrayList<String> options2Items_01=new ArrayList<String>();
-        options2Items_01.add("07:10");
-        options2Items_01.add("12:10");
-        options2Items_01.add("18:10");
-        ArrayList<String> options2Items_02=new ArrayList<String>();
-        options2Items_02.add("08:10");
-        options2Items_02.add("12:20");
-        ArrayList<String> options2Items_03=new ArrayList<String>();
-        options2Items_03.add("09:10");
-        options2Items_03.add("11:10");
-        options2Items_03.add("15:10");
-        options2Items.add(options2Items_01);
-        options2Items.add(options2Items_02);
-        options2Items.add(options2Items_03);
-        //三级联动效果
-        pvOptions.setPicker(options1Items, options2Items, true);
-        //设置选择的三级单位
-        //        pwOptions.setLabels("省", "市", "区");
-        pvOptions.setTitle("选择班车");
-        pvOptions.setCyclic(false, false, false);
-        //设置默认选中的三级项目
-        //监听确定选择按钮
-        pvOptions.setSelectOptions(1, 1);
+
+        mTitle.setTitleText(R.string.order_title);
+       // mListView.setAdapter(mRecommedAdapter);
+        List<ClassLines> recommendCars = new ArrayList<ClassLines>();
+//        recommendCars.add()
+//        mRecommedAdapter.setData();
+//        options1Items.add(new Line(0,"线路一"));
+//        options1Items.add(new Line(1,"线路二"));
+//        options1Items.add(new Line(3,"线路三"));
+//        ArrayList<String> options2Items_01=new ArrayList<String>();
+//        options2Items_01.add("07:10");
+//        options2Items_01.add("12:10");
+//        options2Items_01.add("18:10");
+//        ArrayList<String> options2Items_02=new ArrayList<String>();
+//        options2Items_02.add("08:10");
+//        options2Items_02.add("12:20");
+//        ArrayList<String> options2Items_03=new ArrayList<String>();
+//        options2Items_03.add("09:10");
+//        options2Items_03.add("11:10");
+//        options2Items_03.add("15:10");
+//        options2Items.add(options2Items_01);
+//        options2Items.add(options2Items_02);
+//        options2Items.add(options2Items_03);
+
+        requestLineData();
+
         pvOptions.setOnoptionsSelectListener(new OptionsPickerView.OnOptionsSelectListener() {
 
             @Override
-            public void onOptionsSelect(int options1, int option2, int options3) {
+            public void onOptionsSelect(int options1, int option2, int option3) {
                 //返回的分别是三个级别的选中位置
-                String tx = options1Items.get(options1).getPickerViewText()
-                        + options2Items.get(options1).get(option2);
-                Log.d("OrderFragment", tx);
+                if (options1Items.size() > options1 && options2Items.get(options1).size() > option2) {
+                    String tx = options1Items.get(options1).getPickerViewText()
+                            + options2Items.get(options1).get(option2);
+                    Log.d("OrderFragment", tx);
+                }
                 vMasker.setVisibility(View.GONE);
             }
         });
@@ -85,6 +112,71 @@ public class OrderFragment extends BaseMainFragment {
                 pvOptions.show();
             }
         });
+        orderConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
+
+    public void requestLineData() {
+        UserHttper.backgroundRequestLineData(new TelResponseListener<JSONObject>() {
+            ArrayList<String> options2Items_01 = new ArrayList<String>();
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.e("LOGString", response.toString());
+                mLineInfoResult = new Gson().fromJson(response.toString(), LineInfoResult.class);
+                if (null != mLineInfoResult && mLineInfoResult.getResult().equals("1")) {
+                    List<LineInfo> lineInfos= mLineInfoResult.getLineInfo();
+                    for(int i = 0; i < lineInfos.size(); i++) {
+                        String lineNum = lineInfos.get(i).getLineNum();
+                        options1Items.add(new Line(i, "线路" + lineNum));
+                        UserHttper.backgroundRequestarInfoDetail(lineNum, new TelResponseListener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.e("LOGString", "111" + response.toString());
+                                mCarInfoDetail = new Gson().fromJson(response.toString(), CarInfoDetail.class);
+                                if (null != mCarInfoDetail && mCarInfoDetail.getResult().equals("1")) {
+                                    int count = mCarInfoDetail.getClassLines().size();
+                                    Log.e("LOGString", "333" +count);
+
+                                    for (int i = 0; i < count; i++) {
+                                        Log.e("LOGString", "22" + mCarInfoDetail.getClassLines().get(i).getLineTime());
+                                        options2Items_01.add(mCarInfoDetail.getClassLines().get(i).getLineTime());
+                                    }
+                                } else {
+                                    Log.e("LOGString", "error--" + mCarInfoDetail.toString());
+                                }
+                            }
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Log.e("LOGString", "+++++" + error.toString());
+                            }
+                        });
+                        options2Items.add(options2Items_01);
+                    }
+                } else {
+                    Log.e("LOGString", "error--" + mLineInfoResult.toString());
+                }
+
+                pvOptions.setPicker(options1Items, options2Items, true);
+                //设置选择的三级单位
+                //pwOptions.setLabels("省", "市", "区");
+                pvOptions.setTitle("选择班车");
+                pvOptions.setCyclic(false, false, false);
+                //设置默认选中的三级项目
+                pvOptions.setSelectOptions(0, 0);
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("LOGString", "error--" + error.toString());
+            }
+        });
+    }
+
 
 }

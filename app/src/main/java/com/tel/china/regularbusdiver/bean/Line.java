@@ -4,11 +4,30 @@ package com.tel.china.regularbusdiver.bean;
  * Created by zhaohaiyang on 2016/4/17.
  */
 public class Line {
-    private long id;
+    private int id;
     private String name;
+    private String remark;
+    int carCount;
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public int getCarCount() {
+        return carCount;
+    }
+
+    public void setCarCount(int carCount) {
+        this.carCount = carCount;
+    }
 
 
-    public Line(long id,String name){
+
+
+    public Line(int id,String name){
         this.id = id;
         this.name = name;
 
@@ -18,7 +37,7 @@ public class Line {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -12,12 +12,15 @@ public class URLConfig {
 
     //实名认证
     public static final String http_user_realname = prefix + "/user/realname";
-    //设置登录密码
+    //登录
     public static final String http_user_login = prefix + "/login";
     //请求line线路信息
     public static final String http_line_info = prefix + "/lineInfo";
-    //登录
-    public static final String http_user_register = prefix + "/user/register";
+
+    //请求line线路信息
+    public static final String http_car_info_detail = prefix + "/carInfoDetail";
+
+
     //发送短信验证码
     public static final String http_user_sms = prefix + "/user/sms";
 
