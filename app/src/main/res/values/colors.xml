@@ -21,6 +21,8 @@
     <color name="bt_disable">#bbbcbf</color>
     <color name="b_grey">#646466</color>
     <color name="v_divider">#d6d6d6</color>
+    <color name="separator_line_color">#d9d9d9</color>
+    <color name="serial_tip_color">#a6a6a6</color>
 
     <color name="split_tab_pressed">#828282</color>
 
@@ -70,6 +72,7 @@
     <color name="asset_menu_text_color">#f57373</color>
     <color name="asset_item_extra_desc_bg">#f7f7f7</color>
     <color name="liquidate_rate_adjust_btn_bg">#c53f46</color>
+    <color name="app_gray_bg_color">#f3f3f7</color>
 
     //鑹插�琛�    <color name="w_navigation_title">#3d4245</color>
     <color name="i_green">#0f9a8c</color>

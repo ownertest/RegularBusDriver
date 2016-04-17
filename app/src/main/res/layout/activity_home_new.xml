@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_orange_dark">
+    android:background="@android:color/white">
 
     <com.tel.china.regularbusdiver.util.TitleBar
         android:id="@+id/search_titlebar"
@@ -13,7 +13,9 @@
         android:id="@+id/serch_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:drawable/list_selector_background"
-        android:layout_below="@id/search_titlebar"/>
+        android:listSelector="@drawable/list_selector"
+        android:layout_below="@id/search_titlebar"
+        android:divider="@color/separator_line_color"
+        android:dividerHeight="1px"/>
 
 </RelativeLayout>

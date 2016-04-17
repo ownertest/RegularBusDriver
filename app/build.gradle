@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
+        bus {
             keyAlias 'bus.keystore'
             keyPassword 'xiaohua'
-            storeFile file('D:/bus.keystore')
+            storeFile file('I://RegularBusDiver/bus.keystore')
             storePassword 'xiaohua'
         }
     }
@@ -22,9 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.bus
         }
         debug {
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.bus
         }
     }
 }

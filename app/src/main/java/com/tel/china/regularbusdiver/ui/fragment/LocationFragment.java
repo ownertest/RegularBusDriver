@@ -11,6 +11,8 @@ import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
@@ -41,12 +43,19 @@ public class LocationFragment extends BaseMainFragment {
         mBaiduMap = mMapView.getMap();
         //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
-//        addCar();
+        LatLng point = new LatLng(39.963175, 116.400244);
+        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().target(point).zoom(16).build()));
+        //test TODO
+
+        addCar(point);
+        LatLng point1 = new LatLng(39.863175, 116.200244);
+        addCar(point1);
+        LatLng point2 = new LatLng(39.961175, 116.300244);
+        addCar(point2);
     }
 
-    private void addCar() {
+    private void addCar(LatLng point) {
         //定义Maker坐标点
-        LatLng point = new LatLng(39.963175, 116.400244);
         //构建Marker图标
         BitmapDescriptor bitmap = BitmapDescriptorFactory
                 .fromResource(R.drawable.mark);

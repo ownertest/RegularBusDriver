@@ -3,6 +3,7 @@ package com.tel.china.regularbusdiver.http;
 import com.android.volley.Request;
 import com.tel.china.regularbusdiver.Config;
 import com.tel.china.regularbusdiver.URLConfig;
+import com.tel.china.regularbusdiver.util.Log;
 
 import org.json.JSONObject;
 
@@ -45,6 +46,11 @@ public class UserHttper {
         param.put(Config.userName, name);
         param.put(Config.password, password);
         RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_user_login, param, listener);
+    }
+
+    public static void backgroundRequestLineData(TelResponseListener<JSONObject> listener) {
+        Map<String, String> param = RequestManager.getCommonParams();
+        RequestManager.backgroundRequest(Request.Method.POST, URLConfig.http_line_info, param, listener);
     }
 
     public static void backgroundUserInfo(TelResponseListener<JSONObject> listener, String filter) {

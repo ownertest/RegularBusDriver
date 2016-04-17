@@ -11,10 +11,15 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.R;
 import com.tel.china.regularbusdiver.http.TelResponseListener;
+import com.tel.china.regularbusdiver.http.UserHttper;
 import com.tel.china.regularbusdiver.ui.adapter.LineItemAdapter;
+import com.tel.china.regularbusdiver.util.LineInfo;
+import com.tel.china.regularbusdiver.util.LineInfoResult;
 import com.tel.china.regularbusdiver.util.LineItem;
+import com.tel.china.regularbusdiver.util.Log;
 import com.tel.china.regularbusdiver.util.TitleBar;
 
 import java.util.ArrayList;
@@ -24,6 +29,9 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
     private TitleBar mTitle;
     private ListView mListView;
     private LineItemAdapter mAdapter;
+    private LineInfoResult mResult;
+    private LineInfo mLineInfo;
+    private final static int LIST = 0x01;
 
     private class MyHandler implements Handler.Callback {
 
@@ -31,7 +39,10 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
         public boolean handleMessage(Message message) {
             if (!mActivity.isFinishing()) {
                 switch (message.what) {
-
+                    case LIST:
+                        mAdapter.setData(mResult.getLineInfo(), mActivity);
+                        mAdapter.notifyDataSetChanged();
+                        break;
                     default:
                         break;
                 }
@@ -56,6 +67,7 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
 
     private void initView(View view) {
         mTitle = (TitleBar) view.findViewById(R.id.search_titlebar);
+        mTitle.showBackButton(false);
         mListView = (ListView) view.findViewById(R.id.serch_listview);
     }
 
@@ -64,35 +76,27 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
         mAdapter = new LineItemAdapter();
         mListView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
-
-        //test
-        LineItem lineItem1 = new LineItem("线路1", "上地", "日月宫");
-        LineItem lineItem2 = new LineItem("线路2", "天坛", "六里桥");
-        LineItem lineItem3 = new LineItem("线路3", "四通", "人大");
-        LineItem lineItem4 = new LineItem("线路4", "北门", "明德");
-        LineItem lineItem5 = new LineItem("线路5", "苏州街", "正阳门");
-        LineItem lineItem6 = new LineItem("线路6", "前门", "北京站");
-        LineItem lineItem7 = new LineItem("线路7", "香山", "奥森公园");
-        List<LineItem> list = new ArrayList<LineItem>();
-        list.add(lineItem1);
-        list.add(lineItem2);
-        list.add(lineItem3);
-        list.add(lineItem4);
-        list.add(lineItem5);
-        list.add(lineItem6);
-        list.add(lineItem7);
-        mAdapter.setData(list, mActivity);
-        mAdapter.notifyDataSetChanged();
-        //end test
+        requestLineData();
     }
 
+    public void requestLineData() {
+        UserHttper.backgroundRequestLineData(this);
+    }
     @Override
     public void onResponse(Object response) {
-
+        Log.e("LOGString", response.toString());
+        mResult = new Gson().fromJson(response.toString(), LineInfoResult.class);
+        if (null != mResult && mResult.getResult().equals("1")) {
+            myHandler.obtainMessage(LIST).sendToTarget();
+            Log.e("LOGString", mResult.getLineInfo().get(0).getLineNum());
+            Log.e("LOGString", mResult.getLineInfo().get(0).getSchedule().get(0));
+        } else {
+            Log.e("LOGString", "result request error");
+        }
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
+        Log.e("LOGString", "error--" + error.toString());
     }
 }
