@@ -13,7 +13,7 @@ import com.android.volley.VolleyError;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.R;
-import com.tel.china.regularbusdiver.bean.CarInfoDetail;
+import com.tel.china.regularbusdiver.bean.carInfoDetail;
 import com.tel.china.regularbusdiver.bean.ClassLines;
 import com.tel.china.regularbusdiver.bean.Line;
 import com.tel.china.regularbusdiver.bean.User;
@@ -39,7 +39,7 @@ public class OrderFragment extends BaseMainFragment {
     private TextView selectBus;
     private TitleBar mTitle;
     private LineInfoResult mLineInfoResult;
-    private CarInfoDetail mCarInfoDetail;
+    private carInfoDetail mCarInfoDetail;
     private Button orderConfirm;
     private ListView mListView;
     private RecommendAdapter mRecommedAdapter;
@@ -154,7 +154,7 @@ public class OrderFragment extends BaseMainFragment {
                             @Override
                             public void onResponse(JSONObject response) {
                                 Log.e("LOGString", "111" + response.toString());
-                                mCarInfoDetail = new Gson().fromJson(response.toString(), CarInfoDetail.class);
+                                mCarInfoDetail = new Gson().fromJson(response.toString(), carInfoDetail.class);
                                 if (null != mCarInfoDetail && mCarInfoDetail.getResult().equals("1")) {
                                     int count = mCarInfoDetail.getClassLines().size();
                                     for (int i = 0; i < count; i++) {

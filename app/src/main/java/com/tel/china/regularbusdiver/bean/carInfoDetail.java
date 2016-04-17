@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by zhaohaiyang on 2016/4/17.
  */
-public class CarInfoDetail {
+public class carInfoDetail {
     private String result;
     private Line line;
     private int carCount;

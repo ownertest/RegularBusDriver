@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.volley.VolleyError;
@@ -15,10 +16,13 @@ import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.R;
 import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.http.UserHttper;
+import com.tel.china.regularbusdiver.ui.activity.LineDetailActivity;
 import com.tel.china.regularbusdiver.ui.adapter.LineItemAdapter;
+import com.tel.china.regularbusdiver.util.Constants;
 import com.tel.china.regularbusdiver.util.LineInfo;
 import com.tel.china.regularbusdiver.util.LineInfoResult;
 import com.tel.china.regularbusdiver.util.LineItem;
+import com.tel.china.regularbusdiver.util.ListUtils;
 import com.tel.china.regularbusdiver.util.Log;
 import com.tel.china.regularbusdiver.util.TitleBar;
 
@@ -30,7 +34,7 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
     private ListView mListView;
     private LineItemAdapter mAdapter;
     private LineInfoResult mResult;
-    private LineInfo mLineInfo;
+    private List<LineInfo> mLineInfoList;
     private final static int LIST = 0x01;
 
     private class MyHandler implements Handler.Callback {
@@ -69,6 +73,17 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
         mTitle = (TitleBar) view.findViewById(R.id.search_titlebar);
         mTitle.showBackButton(false);
         mListView = (ListView) view.findViewById(R.id.serch_listview);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int index = i - mListView.getHeaderViewsCount();
+                Intent intent = new Intent(mActivity, LineDetailActivity.class);
+                intent.putExtra(Constants.LINE_NUM, mLineInfoList.get(index).getLineNum());
+                intent.putExtra(Constants.START_STATION, (String) ListUtils.getIndex(mLineInfoList.get(index).getSchedule(), 0));
+                intent.putExtra(Constants.END_STATION, (String) ListUtils.getIndex(mLineInfoList.get(index).getSchedule(), 1));
+                startActivity(intent);
+            }
+        });
     }
 
     private void initData() {
@@ -87,11 +102,10 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
         Log.e("LOGString", response.toString());
         mResult = new Gson().fromJson(response.toString(), LineInfoResult.class);
         if (null != mResult && mResult.getResult().equals("1")) {
+            mLineInfoList = mResult.getLineInfo();
             myHandler.obtainMessage(LIST).sendToTarget();
-            Log.e("LOGString", mResult.getLineInfo().get(0).getLineNum());
-            Log.e("LOGString", mResult.getLineInfo().get(0).getSchedule().get(0));
         } else {
-            Log.e("LOGString", "result request error");
+            Log.e("LOGString", "error--result is null");
         }
     }
 
