@@ -26,6 +26,7 @@ public class Config {
     public static final String line_num = "lineNum";
     public static final String http_tag = "tag";
     public static final String http_operation = "operation";
+    public static final String line_id = "lineId";
 
 }
 

@@ -60,6 +60,12 @@ public class UserHttper {
         param.put(Config.userName, userName);
         RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_order_line, param, listener);
     }
+    public static void backgroundRequestOrderQuery(String lineId, String userName, TelResponseListener<JSONObject> listener) {
+        Map<String, String> param = RequestManager.getCommonParams();
+        param.put(Config.line_id, lineId);
+        param.put(Config.userName, userName);
+        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_car_info_detail, param, listener);
+    }
 
     public static void backgroundUserInfo(TelResponseListener<JSONObject> listener, String filter) {
         Map<String, String> param = RequestManager.getCommonParams();

@@ -37,5 +37,8 @@
     <string name="setting_about">关于APP</string>
     <string name="setting_logout">退出</string>
     <string name="setting_title">个人中心</string>
+    <string name="order_yes">已经预定，点击取消</string>
+    <string name="order_no">没有预定</string>
+    <string name="order_yes1">已经预定过</string>
 
 </resources>
