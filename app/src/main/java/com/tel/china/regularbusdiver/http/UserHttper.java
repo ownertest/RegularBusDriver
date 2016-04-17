@@ -8,9 +8,7 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-/**
- * Created by longyi on 14/12/25.
- */
+
 public class UserHttper {
     public static void backgroundUserExistSms(String phone, TelResponseListener<JSONObject> listener) {
         Map<String, String> param = RequestManager.getCommonParams();

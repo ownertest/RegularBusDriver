@@ -106,8 +106,8 @@ public class OrderFragment extends BaseMainFragment {
         mRecommedAdapter = new RecommendAdapter();
         mListView.setAdapter(mRecommedAdapter);
         List<ClassLines> recommendCars = new ArrayList<ClassLines>();
-        recommendCars.add(new ClassLines("12:12", "线路1"));
-        recommendCars.add(new ClassLines("11:12", "线路1"));
+        recommendCars.add(new ClassLines("08:10", "线路1"));
+        recommendCars.add(new ClassLines("17:00", "线路1"));
         mRecommedAdapter.setData(recommendCars, mActivity);
 //        options1Items.add(new Line(0,"线路一"));
 //        options1Items.add(new Line(1,"线路二"));

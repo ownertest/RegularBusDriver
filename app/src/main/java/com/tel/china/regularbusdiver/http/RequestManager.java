@@ -21,9 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Created by longyi on 14-12-24.
- */
 public class RequestManager {
     public static final String encoding = "UTF-8";
     private static RequestQueue requestQueue;
