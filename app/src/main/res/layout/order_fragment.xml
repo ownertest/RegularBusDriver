@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/font_25"
+        android:textSize="@dimen/font_19"
         android:textColor="@color/a_black"
-        android:background="@color/b_grey"
+        android:background="@color/white"
         android:layout_below="@+id/order_titlebar"
         />
 
@@ -30,28 +30,32 @@
         android:listSelector="@drawable/list_selector"
         android:layout_below="@id/recomendLine"
         android:divider="@color/separator_line_color"
-        android:dividerHeight="1px"/>
+        android:dividerHeight="2px"
+        android:layout_marginTop="@dimen/margin_15"/>
 
     <TextView
         android:text="@string/select_bus"
         android:id="@+id/bt_select_bus"
-        android:textColor="@color/a_black"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/bt_height"
-        android:textSize="@dimen/font_17"
-        android:layout_below="@+id/recommend_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_20"
+        android:textSize="@dimen/font_19"
+        android:textColor="@color/a_black"
+        android:background="@color/white"
+        android:layout_below="@+id/recommend_listview"
+        android:layout_marginTop="@dimen/margin_15"
        />
     <Button
-        android:text="@string/order_confirm"
-        android:textSize="@dimen/font_30"
+        android:text="@string/order_no"
+        android:textSize="@dimen/font_19"
+        android:textColor="@color/b_grey"
         android:id="@+id/bt_confirm"
         android:layout_width="@dimen/confirm_weight"
         android:layout_height="@dimen/confirm_heigt"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/bt_select_bus"
         android:background="@drawable/circle"
+        android:layout_marginTop="@dimen/margin_40"
         />
     <View
         android:id="@+id/vMasker"

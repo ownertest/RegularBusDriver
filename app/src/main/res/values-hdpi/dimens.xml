@@ -209,7 +209,7 @@
     <dimen name="result_bottom_tag_height">20dp</dimen>
     <dimen name="result_bottom_tag_width">23dp</dimen>
 
-    <dimen name="confirm_heigt">120dp</dimen>
-    <dimen name="confirm_weight">120dp</dimen>
+    <dimen name="confirm_heigt">150dp</dimen>
+    <dimen name="confirm_weight">150dp</dimen>
 
 </resources>

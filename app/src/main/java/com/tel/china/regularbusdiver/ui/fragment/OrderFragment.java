@@ -1,22 +1,27 @@
 package com.tel.china.regularbusdiver.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.R;
-import com.tel.china.regularbusdiver.bean.carInfoDetail;
 import com.tel.china.regularbusdiver.bean.ClassLines;
 import com.tel.china.regularbusdiver.bean.Line;
+import com.tel.china.regularbusdiver.bean.OrderQuery;
 import com.tel.china.regularbusdiver.bean.User;
+import com.tel.china.regularbusdiver.bean.carInfoDetail;
 import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.http.UserHttper;
 import com.tel.china.regularbusdiver.system.StdApplication;
@@ -43,6 +48,7 @@ public class OrderFragment extends BaseMainFragment {
     private Button orderConfirm;
     private ListView mListView;
     private RecommendAdapter mRecommedAdapter;
+    protected int mOrderEd = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,9 +69,37 @@ public class OrderFragment extends BaseMainFragment {
         pvOptions = new OptionsPickerView(view.getContext());
         mTitle = (TitleBar) view.findViewById(R.id.order_titlebar);
         mListView = (ListView) view.findViewById(R.id.recommend_listview);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int index = i - mListView.getHeaderViewsCount();
+                if(mOrderEd > 0){
+
+                }
+                dialog();
+            }
+        });
         mTitle.showBackButton(false);
     }
+    protected void dialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+        builder.setTitle("提示");
+        builder.setMessage("确认预定吗？");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
 
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
     private  void initData() {
 
         mTitle.setTitleText(R.string.order_title);
@@ -109,13 +143,22 @@ public class OrderFragment extends BaseMainFragment {
                     UserHttper.backgroundRequestOrderQuery(lineId + "", cu.getName(), new TelResponseListener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            OrderQuery orderQueryResult;
+                            orderQueryResult = new Gson().fromJson(response.toString(), OrderQuery.class);
+                            mOrderEd = orderQueryResult.getOrderEd();
+                            setButton();
+                            if(mOrderEd > 0) {
+                                showToast(getResources().getString(R.string.order_yes1), Toast.LENGTH_SHORT);
+                            }else {
 
+                            }
                         }
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
                         }
+
                     });
                 }
                 vMasker.setVisibility(View.GONE);
@@ -137,6 +180,16 @@ public class OrderFragment extends BaseMainFragment {
 
     }
 
+    public void setButton () {
+        if(mOrderEd > 0) {
+            orderConfirm.setTextColor(getResources().getColor(R.color.green));
+            orderConfirm.setText(getResources().getText(R.string.order_yes));
+        }else {
+            orderConfirm.setTextColor(getResources().getColor(R.color.b_grey));
+            orderConfirm.setText(getResources().getText(R.string.order_no));
+        }
+
+    }
     public void requestLineData() {
         UserHttper.backgroundRequestLineData(new TelResponseListener<JSONObject>() {
            // ArrayList<String> options2Items_01;
