@@ -53,6 +53,12 @@ public class UserHttper {
         RequestManager.backgroundRequest(Request.Method.POST, URLConfig.http_line_info, param, listener);
     }
 
+    public static void backgroundRequestLineDetailData(String lineNum, TelResponseListener<JSONObject> listener) {
+        Map<String, String> param = RequestManager.getCommonParams();
+        param.put(Config.http_line_num, lineNum);
+        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_line_detail, param, listener);
+    }
+
     public static void backgroundUserInfo(TelResponseListener<JSONObject> listener, String filter) {
         Map<String, String> param = RequestManager.getCommonParams();
         RequestManager.backgroundRequest(filter, Request.Method.GET, URLConfig.http_user, param, listener);
