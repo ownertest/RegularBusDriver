@@ -3,9 +3,6 @@ package com.tel.china.regularbusdiver.util;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by MapleHua on 2016/4/17 0017.
- */
 public class Schedule implements Parcelable {
 
     private String time;

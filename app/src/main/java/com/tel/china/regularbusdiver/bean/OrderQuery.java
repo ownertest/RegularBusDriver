@@ -1,8 +1,6 @@
 package com.tel.china.regularbusdiver.bean;
 
-/**
- * Created by zhaohaiyang on 2016/4/17.
- */
+
 public class OrderQuery {
     public int getResult() {
         return result;

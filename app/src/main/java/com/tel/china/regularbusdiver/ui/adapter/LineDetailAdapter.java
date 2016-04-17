@@ -15,16 +15,13 @@ import com.tel.china.regularbusdiver.http.TelResponseListener;
 import com.tel.china.regularbusdiver.http.UserHttper;
 import com.tel.china.regularbusdiver.system.StdApplication;
 import com.tel.china.regularbusdiver.ui.activity.LoginActivity;
-import com.tel.china.regularbusdiver.util.LineItem;
 import com.tel.china.regularbusdiver.util.ListUtils;
 import com.tel.china.regularbusdiver.util.Log;
 import com.tel.china.regularbusdiver.util.Schedule;
 
 import java.util.List;
 
-/**
- * Created by MapleHua on 2016/4/17 0017.
- */
+
 public class LineDetailAdapter extends BaseAdapter implements TelResponseListener{
     private List<Schedule> mData;
     private Context mContext;

@@ -5,9 +5,7 @@ import android.os.Parcelable;
 
 import java.util.List;
 
-/**
- * Created by MapleHua on 2016/4/17 0017.
- */
+
 public class LineInfo implements Parcelable {
     private String lineNum;
     private List<String> schedule;

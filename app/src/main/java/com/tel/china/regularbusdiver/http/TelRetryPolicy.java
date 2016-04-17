@@ -6,13 +6,7 @@ import com.tel.china.regularbusdiver.util.Log;
 
 
 public class TelRetryPolicy extends DefaultRetryPolicy {
-    /**
-     * Constructs a new retry policy.
-     *
-     * @param initialTimeoutMs  The initial timeout for the policy.
-     * @param maxNumRetries     The maximum number of retries.
-     * @param backoffMultiplier Backoff multiplier for the policy.
-     */
+
     public TelRetryPolicy(int initialTimeoutMs, int maxNumRetries, float backoffMultiplier) {
         super(initialTimeoutMs, maxNumRetries, backoffMultiplier);
     }

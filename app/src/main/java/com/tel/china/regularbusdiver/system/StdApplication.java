@@ -16,9 +16,7 @@ import com.tel.china.regularbusdiver.util.Log;
 import com.tel.china.regularbusdiver.util.SharedPrefsUtil;
 
 
-/**
- * Created by zhaohaiyang on 16/1/8.
- */
+
 public class StdApplication extends Application {
     public static long GESTURE_SHOW_DURATION = 5 * 60 * 1000;
     public static long TIME_WHEN_SCREEN_CLOSE = 0L;

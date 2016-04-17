@@ -15,9 +15,7 @@ import com.tel.china.regularbusdiver.ui.activity.LoginActivity;
 import com.tel.china.regularbusdiver.util.SharedPrefsUtil;
 import com.tel.china.regularbusdiver.util.TitleBar;
 
-/**
- * Created by MapleHua on 2016/4/16 0016.
- */
+
 public class SettingFragment extends BaseMainFragment {
 
     private TitleBar mTitleBar;

@@ -71,9 +71,7 @@ public class RequestManager {
         return extraHeader;
     }
 
-    /**
-     * 当发起此请求的activity执行onDestroy时，此request会被cancel
-     */
+
     public static void backgroundRequest(int method, String url, Map<String, String> params, TelResponseListener<JSONObject> listener) {
         backgroundRequest(method, url, params, listener, (int) (DateUtils.SECOND_IN_MILLIS * 30));
     }

@@ -2,9 +2,6 @@ package com.tel.china.regularbusdiver.bean;
 
 import java.util.List;
 
-/**
- * Created by zhaohaiyang on 2016/4/17.
- */
 public class carInfoDetail {
     private String result;
     private Line line;

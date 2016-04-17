@@ -19,9 +19,7 @@ import com.tel.china.regularbusdiver.util.Log;
 import org.json.JSONObject;
 
 
-/**
- * Created by zhaohaiyang on 16/1/22.
- */
+
 public class LoginActivity extends BaseActivity implements View.OnClickListener, TelResponseListener<JSONObject> {
 
     public static final int REQUEST_LOGINSMS = 2001;

@@ -21,17 +21,35 @@
         android:textColor="@color/a_black"
         android:background="@color/white"
         android:layout_below="@+id/order_titlebar"
+        android:layout_marginLeft="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:gravity="center"
         />
+
+    <View
+        android:id="@+id/v_divider_top"
+        style="@style/divider_1_height_style"
+        android:layout_below="@id/recomendLine"
+        android:layout_marginTop="@dimen/margin_3"/>
 
     <ListView
         android:id="@+id/recommend_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:listSelector="@drawable/list_selector"
-        android:layout_below="@id/recomendLine"
+        android:layout_below="@id/v_divider_top"
         android:divider="@color/separator_line_color"
         android:dividerHeight="2px"
-        android:layout_marginTop="@dimen/margin_15"/>
+        android:layout_marginTop="@dimen/margin_15"
+        android:layout_marginLeft="@dimen/margin_8"
+        />
+
+
+    <View
+        android:id="@+id/v_divider_top2"
+        style="@style/divider_1_height_style"
+        android:layout_below="@id/recommend_listview"
+       />
 
     <TextView
         android:text="@string/select_bus"
@@ -42,9 +60,11 @@
         android:textSize="@dimen/font_19"
         android:textColor="@color/a_black"
         android:background="@color/white"
-        android:layout_below="@+id/recommend_listview"
+        android:layout_below="@+id/v_divider_top2"
         android:layout_marginTop="@dimen/margin_15"
-       />
+        android:layout_marginLeft="@dimen/margin_8"
+
+        />
     <Button
         android:text="@string/order_no"
         android:textSize="@dimen/font_19"

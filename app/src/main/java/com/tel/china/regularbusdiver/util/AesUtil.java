@@ -14,13 +14,7 @@ public class AesUtil {
     private static final String EV = "A2";
     private static byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    /**
-     * 加密(AES+BASE64)
-     *
-     * @param content  需要加密的内容
-     * @param password 秘钥
-     * @return 加密后String字符串
-     */
+
     public static String encrypt(String content, String password) {
         return encrypt(content, password, EV);
     }
@@ -46,13 +40,7 @@ public class AesUtil {
         }
     }
 
-    /**
-     * 解密(AES+BASE64)
-     *
-     * @param content  需要解密的内容
-     * @param password 秘钥
-     * @return 解密后String字符串
-     */
+
     public static String decrypt(String content, String password) {
         if (content.contains("\\n")) {
             content = content.replaceAll("\\\\n", " ");
