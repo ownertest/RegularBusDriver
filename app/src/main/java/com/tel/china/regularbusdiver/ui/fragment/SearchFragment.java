@@ -99,6 +99,7 @@ public class SearchFragment extends BaseMainFragment implements TelResponseListe
     }
     @Override
     public void onResponse(Object response) {
+        Log.e("LOGString", response.toString());
         mResult = new Gson().fromJson(response.toString(), LineInfoResult.class);
         if (null != mResult && mResult.getResult().equals("1")) {
             mLineInfoList = mResult.getLineInfo();

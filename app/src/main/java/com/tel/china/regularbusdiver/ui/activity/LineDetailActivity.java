@@ -111,7 +111,7 @@ public class LineDetailActivity extends Activity implements TelResponseListener{
     }
 
     private void requestLineDetailInfo() {
-        UserHttper.backgroundRequestLineDetailData(mLineNum, this);
+//        UserHttper.backgroundRequestLineDetailData(mLineNum, this);
     }
 
     @Override
