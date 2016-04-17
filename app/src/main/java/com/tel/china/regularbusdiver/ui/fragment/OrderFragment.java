@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.bigkoo.pickerview.OptionsPickerView;
@@ -19,7 +18,6 @@ import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.R;
 import com.tel.china.regularbusdiver.bean.ClassLines;
 import com.tel.china.regularbusdiver.bean.Line;
-import com.tel.china.regularbusdiver.bean.OrderQuery;
 import com.tel.china.regularbusdiver.bean.User;
 import com.tel.china.regularbusdiver.bean.carInfoDetail;
 import com.tel.china.regularbusdiver.http.TelResponseListener;
@@ -140,26 +138,26 @@ public class OrderFragment extends BaseMainFragment {
                     Log.d("OrderFragment", tx);
                     int lineId = options2Items.get(options1).get(option2).getLineId();
                     User cu = StdApplication.getCurrentUser();
-                    UserHttper.backgroundRequestOrderQuery(lineId + "", cu.getName(), new TelResponseListener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            OrderQuery orderQueryResult;
-                            orderQueryResult = new Gson().fromJson(response.toString(), OrderQuery.class);
-                            mOrderEd = orderQueryResult.getOrderEd();
-                            setButton();
-                            if(mOrderEd > 0) {
-                                showToast(getResources().getString(R.string.order_yes1), Toast.LENGTH_SHORT);
-                            }else {
-
-                            }
-                        }
-
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                        }
-
-                    });
+//                    UserHttper.backgroundRequestOrderQuery(lineId + "", cu.getName(), new TelResponseListener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//                            OrderQuery orderQueryResult;
+//                            orderQueryResult = new Gson().fromJson(response.toString(), OrderQuery.class);
+//                            mOrderEd = orderQueryResult.getOrderEd();
+//                            setButton();
+//                            if(mOrderEd > 0) {
+//                                showToast(getResources().getString(R.string.order_yes1), Toast.LENGTH_SHORT);
+//                            }else {
+//
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//
+//                        }
+//
+//                    });
                 }
                 vMasker.setVisibility(View.GONE);
             }
