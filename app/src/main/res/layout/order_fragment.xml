@@ -5,6 +5,11 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
+    <com.tel.china.regularbusdiver.util.TitleBar
+        android:id="@+id/order_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       />
 
     <TextView
         android:id="@+id/recomendLine"
@@ -15,8 +20,17 @@
         android:textSize="@dimen/font_25"
         android:textColor="@color/a_black"
         android:background="@color/b_grey"
+        android:layout_below="@+id/order_titlebar"
         />
 
+    <ListView
+        android:id="@+id/recommend_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="@drawable/list_selector"
+        android:layout_below="@id/search_titlebar"
+        android:divider="@color/separator_line_color"
+        android:dividerHeight="1px"/>
 
     <TextView
         android:text="@string/select_bus"
@@ -25,17 +39,19 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/bt_height"
         android:textSize="@dimen/font_17"
-        android:layout_below="@+id/recomendLine"
+        android:layout_below="@+id/recommend_listview"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_20"
        />
-    <ImageButton
+    <Button
+        android:text="@string/order_confirm"
+        android:textSize="@dimen/font_30"
         android:id="@+id/bt_confirm"
-        android:background="@drawable/confirm"
         android:layout_width="@dimen/confirm_weight"
         android:layout_height="@dimen/confirm_heigt"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/bt_select_bus"
+        android:background="@drawable/circle"
         />
     <View
         android:id="@+id/vMasker"

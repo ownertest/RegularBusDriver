@@ -24,6 +24,7 @@ public class Config {
     public static final String password = "password";
     public static final String http_result = "result";
     public static final String http_line_num = "lineNum";
+    public static final String line_num = "lineNum";
 
 }
 

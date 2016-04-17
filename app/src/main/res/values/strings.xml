@@ -31,5 +31,7 @@
     <string name = "line_detail_free">剩余数量</string>
     <string name = "line_detail_btn_order">座位预定</string>
     <string name="title_activity_line_detail">LineDetailActivity</string>
-    recomend_line
+    <string name="order_title">预约班车</string>
+    <string name="order_confirm">确定</string>
+
 </resources>

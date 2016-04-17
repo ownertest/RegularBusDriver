@@ -3,7 +3,6 @@ package com.tel.china.regularbusdiver.http;
 import com.android.volley.Request;
 import com.tel.china.regularbusdiver.Config;
 import com.tel.china.regularbusdiver.URLConfig;
-import com.tel.china.regularbusdiver.util.Log;
 
 import org.json.JSONObject;
 
@@ -19,13 +18,7 @@ public class UserHttper {
         RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_user_exist_sms, param, listener);
     }
 
-    public static void backgroundUserRegister(String phone, String password, String verify_code, TelResponseListener<JSONObject> listener) {
-        Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.key_phone, phone);
-        param.put(Config.key_password, password);
-        param.put(Config.key_verify_code, verify_code);
-        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_user_register, param, listener);
-    }
+
 
     public static void backgroundUserSms(String phone, int action, TelResponseListener<JSONObject> listener) {
         Map<String, String> param = RequestManager.getCommonParams();
@@ -53,10 +46,10 @@ public class UserHttper {
         RequestManager.backgroundRequest(Request.Method.POST, URLConfig.http_line_info, param, listener);
     }
 
-    public static void backgroundRequestLineDetailData(String lineNum, TelResponseListener<JSONObject> listener) {
+    public static void backgroundRequestarInfoDetail(String lineNum,TelResponseListener<JSONObject> listener) {
         Map<String, String> param = RequestManager.getCommonParams();
-        param.put(Config.http_line_num, lineNum);
-        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_line_detail, param, listener);
+        param.put(Config.line_num, lineNum);
+        RequestManager.backgroundRequest(Request.Method.GET, URLConfig.http_car_info_detail, param, listener);
     }
 
     public static void backgroundUserInfo(TelResponseListener<JSONObject> listener, String filter) {

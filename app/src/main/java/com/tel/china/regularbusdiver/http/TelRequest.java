@@ -12,7 +12,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.tel.china.regularbusdiver.Config;
-import com.tel.china.regularbusdiver.URLConfig;
 import com.tel.china.regularbusdiver.util.Log;
 import com.tel.china.regularbusdiver.util.Md5Util;
 
@@ -93,9 +92,13 @@ public class TelRequest extends Request<JSONObject> {
                 }
             }
             Log.d("isCache " + isCache);
+            Log.e("zhaohaiyang",isCache + "++");
             Cache.Entry entry = HttpHeaderParser.parseCacheHeaders(response);
+            Log.e("zhaohaiyang",isCache + "entry");
             if (getMethod() == Method.GET && !isCache) {
-                long cacheTime = URLConfig.getCacheTime(url);
+                //long cacheTime = URLConfig.getCacheTime(url);
+                long cacheTime = 0;
+                Log.e("zhaohaiyang",isCache + "url");
                 if (cacheTime > 0) {
                     entry.softTtl = System.currentTimeMillis() + cacheTime;
                     entry.ttl = entry.softTtl;
