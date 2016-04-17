@@ -23,5 +23,7 @@
     <string name="SplashActivity">SplashActivity</string>
     <string name="LoginActivity">LoginActivity</string>
     <string name="login_fail">登陆失败，重新登陆</string>
-
+    <string name="select_bus">选择新的线路</string>
+    <string name="recomend_line">推荐线路</string>
+    recomend_line
 </resources>

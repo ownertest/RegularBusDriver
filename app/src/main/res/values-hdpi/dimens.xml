@@ -208,4 +208,8 @@
     <dimen name="result_bottom_banner_height">42dp</dimen>
     <dimen name="result_bottom_tag_height">20dp</dimen>
     <dimen name="result_bottom_tag_width">23dp</dimen>
+
+    <dimen name="confirm_heigt">100dp</dimen>
+    <dimen name="confirm_weight">100dp</dimen>
+
 </resources>

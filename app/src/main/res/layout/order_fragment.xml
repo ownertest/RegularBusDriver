@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+
+    <TextView
+        android:id="@+id/recomendLine"
+        android:text="@string/recomend_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/font_25"
+        android:textColor="@color/a_black"
+        android:background="@color/b_grey"
+        />
+
+
+    <TextView
+        android:text="@string/select_bus"
+        android:id="@+id/bt_select_bus"
+        android:textColor="@color/a_black"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/bt_height"
+        android:textSize="@dimen/font_17"
+        android:layout_below="@+id/recomendLine"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_20"
+       />
+    <ImageButton
+        android:id="@+id/bt_confirm"
+        android:background="@drawable/confirm"
+        android:layout_width="@dimen/confirm_weight"
+        android:layout_height="@dimen/confirm_heigt"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/bt_select_bus"
+        />
+    <View
+        android:id="@+id/vMasker"
+        android:background="@color/white"
+        android:layout_below="@+id/bt_select_bus"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"/>
+
+</RelativeLayout>
