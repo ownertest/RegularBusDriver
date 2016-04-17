@@ -101,8 +101,17 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/textsize_22"
             android:textColor="@color/serial_tip_color"
-            android:text="已预定"/>
+            android:text="班次："/>
 
+        <TextView
+            android:id="@+id/line_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_22"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_marginLeft="@dimen/px_10"
+            android:text="已预定"/>
+<!--
         <TextView
             android:id="@+id/order_num"
             android:layout_width="wrap_content"
@@ -128,6 +137,7 @@
             android:textSize="@dimen/textsize_22"
             android:textColor="@android:color/holo_green_light"
             android:text="18位"/>
+            -->
 
     </LinearLayout>
 

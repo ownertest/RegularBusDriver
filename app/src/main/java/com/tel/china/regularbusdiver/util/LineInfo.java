@@ -11,12 +11,12 @@ import java.util.List;
 public class LineInfo implements Parcelable {
     private String lineNum;
     private List<String> schedule;
-    private String orderNum;
-    private String freeNum;
+    private List<String> times;
 
-    public LineInfo(String lineNum, List<String> schedule) {
+    public LineInfo(String lineNum, List<String> schedule, List<String> times) {
         this.lineNum = lineNum;
         this.schedule = schedule;
+        this.times = times;
     }
 
     @Override
@@ -27,6 +27,7 @@ public class LineInfo implements Parcelable {
     public LineInfo(Parcel in) {
         lineNum = in.readString();
         in.readStringList(schedule);
+        in.readStringList(times);
     }
     public static final Parcelable.Creator<LineInfo> CREATOR = new Parcelable.Creator<LineInfo>() {
         public LineInfo createFromParcel(Parcel in) {
@@ -42,6 +43,7 @@ public class LineInfo implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(lineNum);
         parcel.writeList(schedule);
+        parcel.writeList(times);
     }
 
     public String getLineNum() {
@@ -60,19 +62,11 @@ public class LineInfo implements Parcelable {
         this.schedule = schedule;
     }
 
-    public String getOrderNum() {
-        return orderNum;
+    public List<String> getTimes() {
+        return times;
     }
 
-    public void setOrderNum(String orderNum) {
-        this.orderNum = orderNum;
-    }
-
-    public String getFreeNum() {
-        return freeNum;
-    }
-
-    public void setFreeNum(String freeNum) {
-        this.freeNum = freeNum;
+    public void setTimes(List<String> times) {
+        this.times = times;
     }
 }

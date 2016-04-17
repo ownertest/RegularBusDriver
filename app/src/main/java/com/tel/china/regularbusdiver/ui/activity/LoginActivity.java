@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         if(jsonResult == 1) {
             User user  = new User(et_user_name.getText().toString().trim(),et_user_name.getText().toString().trim());
             StdApplication.setCurrentUser(user);
+            finish();
         }
         else {
             showToast(getResources().getString(R.string.login_fail), Toast.LENGTH_SHORT);

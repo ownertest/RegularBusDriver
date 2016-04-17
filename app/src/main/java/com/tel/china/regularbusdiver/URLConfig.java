@@ -19,6 +19,8 @@ public class URLConfig {
     public static final String http_user_register = prefix + "/user/register";
     //请求line线路信息
     public static final String http_car_info_detail = prefix + "/carInfoDetail";
+    //order
+    public static final String http_order_line = prefix + "/order";
     //发送短信验证码
     public static final String http_user_sms = prefix + "/user/sms";
 

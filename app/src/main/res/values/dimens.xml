@@ -7,6 +7,7 @@
     <dimen name="textsize_22">11dp</dimen>
     <dimen name="textsize_24">12dp</dimen>
     <dimen name="textsize_28">14dp</dimen>
+    <dimen name="textsize_30">15dp</dimen>
     <dimen name="textsize_32">16dp</dimen>
     <dimen name="textsize_40">20dp</dimen>
     <dimen name="textsize_50">25dp</dimen>
@@ -15,12 +16,15 @@
     <dimen name="px_4">2dp</dimen>
     <dimen name="px_10">5dp</dimen>
     <dimen name="px_20">10dp</dimen>
+    <dimen name="px_24">12dp</dimen>
     <dimen name="px_30">15dp</dimen>
     <dimen name="px_32">16dp</dimen>
     <dimen name="px_40">20dp</dimen>
     <dimen name="px_60">30dp</dimen>
     <dimen name="px_80">40dp</dimen>
     <dimen name="px_100">50dp</dimen>
+    <dimen name="px_116">58dp</dimen>
+    <dimen name="px_176">88dp</dimen>
 
     <dimen name="navigation_logo_size">30dp</dimen>
     <dimen name="title_bar_hight">50dp</dimen>

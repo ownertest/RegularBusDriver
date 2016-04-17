@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.tel.china.regularbusdiver.R;
 import com.tel.china.regularbusdiver.util.LineInfo;
-import com.tel.china.regularbusdiver.util.LineItem;
 
 import java.util.List;
 
@@ -50,8 +49,7 @@ public class LineItemAdapter extends BaseAdapter{
             holder.mLineName = (TextView) view.findViewById(R.id.item_line_name);
             holder.startStation = (TextView) view.findViewById(R.id.item_line_start);
             holder.endStation = (TextView) view.findViewById(R.id.item_line_end);
-            holder.orderNum = (TextView) view.findViewById(R.id.order_num);
-            holder.freeNum = (TextView) view.findViewById(R.id.free_num);
+            holder.lineTime = (TextView) view.findViewById(R.id.line_time);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -64,8 +62,13 @@ public class LineItemAdapter extends BaseAdapter{
                     holder.startStation.setText(lineItem.getSchedule().get(0));
                     holder.endStation.setText(lineItem.getSchedule().get(1));
                 }
-                holder.orderNum.setText(lineItem.getOrderNum() + "位");
-                holder.freeNum.setText(lineItem.getFreeNum() + "位");
+                if (null != lineItem.getTimes() && lineItem.getTimes().size() > 0) {
+                    String time = "";
+                    for (String s : lineItem.getTimes()) {
+                        time += (s + "  ");
+                    }
+                    holder.lineTime.setText(time);
+                }
             }
         }
         return view;
@@ -75,7 +78,6 @@ public class LineItemAdapter extends BaseAdapter{
         private TextView mLineName;
         private TextView startStation;
         private TextView endStation;
-        private TextView orderNum;
-        private TextView freeNum;
+        private TextView lineTime;
     }
 }
