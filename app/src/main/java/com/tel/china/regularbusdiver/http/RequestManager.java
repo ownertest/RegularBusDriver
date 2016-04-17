@@ -108,7 +108,7 @@ public class RequestManager {
 
         RequestQueue queue = RequestManager.getRequestQueue();
         Log.d("cache key: " + request.getCacheKey());
-        Log.d("request_info", request.getUrl());
+        Log.e("request_info", request.getUrl());
         queue.add(request);
     }
 

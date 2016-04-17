@@ -23,6 +23,7 @@ import com.tel.china.regularbusdiver.ui.fragment.OrderFragment;
 import com.tel.china.regularbusdiver.ui.fragment.SearchFragment;
 import com.tel.china.regularbusdiver.ui.fragment.SettingFragment;
 import com.tel.china.regularbusdiver.ui.view.NoScrollViewPager;
+import com.tel.china.regularbusdiver.util.Log;
 import com.tel.china.regularbusdiver.util.NavigationBar;
 
 import java.util.HashMap;
@@ -104,7 +105,7 @@ public class MainActivity extends FragmentActivity implements TelResponseListene
                     mKeyCodeBackToast = Toast.makeText(this, getString(R.string.keycode_back_alert_message),
                             Toast.LENGTH_SHORT);
                     mKeyCodeBackToast.show();
-                } else if (mMilliSeconds < System.currentTimeMillis() - mKeyCodeBackLastDownTime) {
+                } else if (mMilliSeconds > System.currentTimeMillis() - mKeyCodeBackLastDownTime) {
                     mKeyCodeBackToast.show();
                 } else {
                     mKeyCodeBackToast.cancel();

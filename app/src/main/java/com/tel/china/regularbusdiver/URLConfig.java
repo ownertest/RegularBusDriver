@@ -14,6 +14,8 @@ public class URLConfig {
     public static final String http_user_realname = prefix + "/user/realname";
     //设置登录密码
     public static final String http_user_login = prefix + "/login";
+    //请求line线路信息
+    public static final String http_line_info = prefix + "/lineInfo";
     //登录
     public static final String http_user_register = prefix + "/user/register";
     //发送短信验证码

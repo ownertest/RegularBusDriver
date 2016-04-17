@@ -9,16 +9,17 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.tel.china.regularbusdiver.R;
+import com.tel.china.regularbusdiver.util.LineInfo;
 import com.tel.china.regularbusdiver.util.LineItem;
 
 import java.util.List;
 
 public class LineItemAdapter extends BaseAdapter{
 
-    private List<LineItem> mData;
+    private List<LineInfo> mData;
     private Context mContext;
 
-    public void setData(List<LineItem> list, Context context) {
+    public void setData(List<LineInfo> list, Context context) {
         mData = list;
         mContext = context;
     }
@@ -49,16 +50,22 @@ public class LineItemAdapter extends BaseAdapter{
             holder.mLineName = (TextView) view.findViewById(R.id.item_line_name);
             holder.startStation = (TextView) view.findViewById(R.id.item_line_start);
             holder.endStation = (TextView) view.findViewById(R.id.item_line_end);
+            holder.orderNum = (TextView) view.findViewById(R.id.order_num);
+            holder.freeNum = (TextView) view.findViewById(R.id.free_num);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
         if (null != mData) {
-            LineItem lineItem = mData.get(i);
+            LineInfo lineItem = mData.get(i);
             if (null != lineItem) {
-                holder.mLineName.setText(lineItem.getLineName());
-                holder.startStation.setText(lineItem.getStartStation());
-                holder.endStation.setText(lineItem.getEndStation());
+                holder.mLineName.setText("线路" + lineItem.getLineNum());
+                if (null != lineItem.getSchedule()) {
+                    holder.startStation.setText(lineItem.getSchedule().get(0));
+                    holder.endStation.setText(lineItem.getSchedule().get(1));
+                }
+                holder.orderNum.setText(lineItem.getOrderNum() + "位");
+                holder.freeNum.setText(lineItem.getFreeNum() + "位");
             }
         }
         return view;
@@ -68,5 +75,7 @@ public class LineItemAdapter extends BaseAdapter{
         private TextView mLineName;
         private TextView startStation;
         private TextView endStation;
+        private TextView orderNum;
+        private TextView freeNum;
     }
 }

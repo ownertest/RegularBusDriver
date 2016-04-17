@@ -11,6 +11,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px_1"
+        android:background="@color/separator_line_color"/>
+
     <com.tel.china.regularbusdiver.util.NavigationBar
         android:id="@+id/main_navigation"
         android:layout_width="match_parent"
