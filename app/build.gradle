@@ -5,7 +5,7 @@ android {
         bus {
             keyAlias 'bus.keystore'
             keyPassword 'xiaohua'
-            storeFile file('C:/Users/MapleHua/bus.keystore')
+            storeFile file('I://RegularBusDiver/bus.keystore')
             storePassword 'xiaohua'
         }
     }
@@ -36,4 +36,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile files('libs/BaiduLBS_Android.jar')
     compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.bigkoo:pickerview:2.0.8'
 }

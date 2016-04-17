@@ -22,6 +22,7 @@ public class Config {
     public static final String key_last_message_id = "key_last_message_id";
     public static final String userName = "userName";
     public static final String password = "password";
+    public static final String http_result = "result";
 
 }
 

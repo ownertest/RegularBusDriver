@@ -95,7 +95,8 @@
             android:textSize="@dimen/font_16"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/transparent_round_corner_button"
-            android:layout_marginLeft="@dimen/margin_15" />
+            android:layout_marginLeft="@dimen/margin_15"
+            android:visibility="invisible"/>
 
 
         <TextView
@@ -114,7 +115,7 @@
             android:textSize="@dimen/font_16"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/transparent_round_corner_button"
-            />
+            android:visibility="invisible"/>
 
     </LinearLayout>
 
