@@ -1,12 +1,11 @@
 package com.tel.china.regularbusdiver.util;
 
 
+import com.tel.china.regularbusdiver.Config;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import com.tel.china.regularbusdiver.Config;
-/**
- * Created by wuyq on 14-2-17.
- */
+
 public class Md5Util {
     public static String encrypt(String plainText) {
         return encrypt(plainText, null);

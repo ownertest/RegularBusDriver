@@ -6,9 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-/**
- * Created by wuyq on 14-2-15.
- */
+
 public class AesUtil {
 
     private static final String A1 = "AES";
